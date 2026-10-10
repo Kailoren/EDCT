@@ -3,7 +3,10 @@
 <img width="160" height="160" alt="EDCT" src="docs/logo.png" />
 
 # Elite Dangerous Colonisation Tracker
-[![License](https://img.shields.io/badge/license-MIT-green?style=plastic)](LICENSE)
+[![Stars](https://img.shields.io/github/stars/kailoren/edct?style=plastic)](https://github.com/kailoren/edct/stargazers)
+[![Release](https://img.shields.io/github/v/release/kailoren/edct?style=plastic)](https://github.com/kailoren/edct/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/kailoren/edct/total?style=plastic)](https://github.com/kailoren/edct/releases)
+[![License](https://img.shields.io/github/license/kailoren/edct?style=plastic)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-Windows-blue?style=plastic)
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/T3N624MRS4)
@@ -44,6 +47,8 @@ New Project has three ways in: **Create from scratch**, **Reference from sheet**
 2. Click **Share** and set General access to **Anyone with the link** (Viewer). EDCT can't read the sheet otherwise.
 3. Open the system's tab and copy the URL from your browser's address bar. Don't use the Share dialog's **Copy link** button, because that link may not point at the tab you want.
 4. In EDCT, choose **New Project**, pick **Reference from sheet** and paste the link. If you leave the system name blank, it's taken from the sheet (cell D1).
+
+<img width="520" height="427" alt="New Project with Reference from sheet selected" src="screenshots/new-project-sheet.png" />
 
 **From Raven Colonial.** Export a backup of the system from [ravencolonial.com](https://ravencolonial.com), pick **Import Raven Colonial JSON export**, then browse for the file or paste its contents. The system name and body labels come from the file.
 
