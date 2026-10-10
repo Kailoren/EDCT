@@ -106,6 +106,11 @@
                                Foreground="{DynamicResource OverlayMuted}"
                                HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
                                Visibility="{Binding ShowEverythingDeliveredMessage, Converter={StaticResource BoolToVisibleConverter}}"/>
+                    <!-- In place of "Everything collected!" when there are Active slots and every one is Completed. -->
+                    <TextBlock Text="Everything's built" FontSize="18" FontWeight="SemiBold" FontStyle="Italic"
+                               Foreground="{DynamicResource OverlayMuted}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                               Visibility="{Binding ShowAllBuiltLoadingMessage, Converter={StaticResource BoolToVisibleConverter}}"/>
                     <ScrollViewer VerticalScrollBarVisibility="Visible" Width="{Binding ActualWidth, ElementName=NeedSupplyHeader}">
                         <ItemsControl x:Name="CommodityList">
                             <ItemsControl.GroupStyle>
@@ -177,6 +182,9 @@
                                 <DataTrigger Binding="{Binding ShowNoActiveStationsMessage}" Value="True">
                                     <Setter Property="Visibility" Value="Collapsed"/>
                                 </DataTrigger>
+                                <DataTrigger Binding="{Binding ShowAllBuiltUnloadingMessage}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </Grid.Style>
@@ -186,6 +194,10 @@
                 <TextBlock DockPanel.Dock="Top" Text="No active stations in the System Plan tab." Foreground="{DynamicResource OverlayMuted}"
                            Margin="0,4,0,0" FontStyle="Italic"
                            Visibility="{Binding ShowNoActiveStationsMessage, Converter={StaticResource BoolToVisibleConverter}}"/>
+                <!-- Same place and style, for Active slots that are all Completed. -->
+                <TextBlock DockPanel.Dock="Top" Text="Everything's built" Foreground="{DynamicResource OverlayMuted}"
+                           Margin="0,4,0,0" FontStyle="Italic"
+                           Visibility="{Binding ShowAllBuiltUnloadingMessage, Converter={StaticResource BoolToVisibleConverter}}"/>
                 <ScrollViewer VerticalScrollBarVisibility="Visible" Width="{Binding ActualWidth, ElementName=RemainingHeader}"
                               Visibility="{Binding ShowUnloadingOverlay, Converter={StaticResource BoolToVisibleConverter}}">
                     <ItemsControl ItemsSource="{Binding UnloadingSites}">

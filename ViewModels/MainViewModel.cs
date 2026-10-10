@@ -101,22 +101,47 @@ public sealed class MainViewModel : ObservableObject, IDisposable
             if (SetProperty(ref _showUnloadingOverlay, value))
             {
                 OnPropertyChanged(nameof(IsLoadingMode));
-                OnPropertyChanged(nameof(ShowNoActiveStationsMessage));
-                OnPropertyChanged(nameof(ShowEverythingDeliveredMessage));
+                RaisePlaceholderChanges();
             }
         }
     }
 
     public bool IsLoadingMode => !ShowUnloadingOverlay;
 
-    /// <summary>Drives the overlay's "No active stations in the System Plan tab." placeholder -
-    /// only while in Unloading mode AND there's genuinely nothing to show (no slot that is Active
-    /// and not yet Completed), not just whenever Unloading mode is selected.</summary>
-    public bool ShowNoActiveStationsMessage => ShowUnloadingOverlay && UnloadingSites.Count == 0;
+    /// <summary>True when the selected project has Active slots and every one of them is
+    /// Completed: nothing is left to build, as opposed to nothing being planned at all. Refreshed
+    /// by RebuildUnloadingSites, which runs after every slot edit (Active or Completed ticked by
+    /// hand) and every auto-tick, so the overlay's placeholders switch over straight away.</summary>
+    private bool _allActiveSlotsCompleted;
+    public bool AllActiveSlotsCompleted
+    {
+        get => _allActiveSlotsCompleted;
+        private set { if (SetProperty(ref _allActiveSlotsCompleted, value)) RaisePlaceholderChanges(); }
+    }
 
-    /// <summary>Drives the overlay's "Everything delivered!" placeholder - only while in Loading
-    /// mode AND nothing is still needed, not just whenever Loading mode is selected.</summary>
-    public bool ShowEverythingDeliveredMessage => IsLoadingMode && TotalStillNeeded == 0;
+    /// <summary>Drives the overlay's "No active stations in the System Plan tab." placeholder -
+    /// only while in Unloading mode AND there's genuinely nothing to show because no slot is
+    /// Active at all. Active slots that are all Completed get "Everything's built" instead.</summary>
+    public bool ShowNoActiveStationsMessage => ShowUnloadingOverlay && UnloadingSites.Count == 0 && !AllActiveSlotsCompleted;
+
+    /// <summary>Drives the overlay's "Everything collected!" placeholder - only while in Loading
+    /// mode AND nothing is still needed, not just whenever Loading mode is selected. When that's
+    /// because every Active slot is Completed, "Everything's built" shows in its place.</summary>
+    public bool ShowEverythingDeliveredMessage => IsLoadingMode && TotalStillNeeded == 0 && !AllActiveSlotsCompleted;
+
+    /// <summary>"Everything's built" in the overlay's Loading view, where "Everything collected!" would otherwise be.</summary>
+    public bool ShowAllBuiltLoadingMessage => IsLoadingMode && AllActiveSlotsCompleted;
+
+    /// <summary>"Everything's built" in the overlay's Unloading view, where "No active stations" would otherwise be.</summary>
+    public bool ShowAllBuiltUnloadingMessage => ShowUnloadingOverlay && AllActiveSlotsCompleted;
+
+    private void RaisePlaceholderChanges()
+    {
+        OnPropertyChanged(nameof(ShowNoActiveStationsMessage));
+        OnPropertyChanged(nameof(ShowEverythingDeliveredMessage));
+        OnPropertyChanged(nameof(ShowAllBuiltLoadingMessage));
+        OnPropertyChanged(nameof(ShowAllBuiltUnloadingMessage));
+    }
 
     public RelayCommand DeleteProjectCommand { get; }
     public RelayCommand AddSlotCommand { get; }
@@ -124,6 +149,26 @@ public sealed class MainViewModel : ObservableObject, IDisposable
     public RelayCommand UndoDeleteSlotCommand { get; }
     public RelayCommand SearchAgainCommand { get; }
     public RelayCommand RescanJournalCommand { get; }
+    public RelayCommand OpenUpdateCommand { get; }
+    public RelayCommand DismissUpdateCommand { get; }
+
+    private string? _updateUrl;
+
+    /// <summary>True when GitHub has a newer release than the one running; shows the dismissible
+    /// update banner under the title bar.</summary>
+    private bool _hasUpdateAvailable;
+    public bool HasUpdateAvailable
+    {
+        get => _hasUpdateAvailable;
+        private set => SetProperty(ref _hasUpdateAvailable, value);
+    }
+
+    private string _updateVersionText = "";
+    public string UpdateVersionText
+    {
+        get => _updateVersionText;
+        private set => SetProperty(ref _updateVersionText, value);
+    }
 
     /// <summary>Single-level undo for a Delete-key slot removal (its row's own Remove button was
     /// replaced by the Completed checkbox column, so this is the only safety net against an
@@ -166,6 +211,8 @@ public sealed class MainViewModel : ObservableObject, IDisposable
         UndoDeleteSlotCommand = new RelayCommand(UndoDeleteSlot, () => CanUndoDeleteSlot);
         SearchAgainCommand = new RelayCommand(RefreshHubPricesAsync, () => SelectedProject is not null);
         RescanJournalCommand = new RelayCommand(RescanJournal);
+        OpenUpdateCommand = new RelayCommand(OpenUpdate);
+        DismissUpdateCommand = new RelayCommand(() => HasUpdateAvailable = false);
 
         SelectedProject = Projects.FirstOrDefault();
 
@@ -173,6 +220,45 @@ public sealed class MainViewModel : ObservableObject, IDisposable
         _cargoReader.Start();
         _carrierCargoTracker.Start();
         JournalStatus = $"Watching {JournalDirectory}";
+    }
+
+    /// <summary>The one update check per launch, started by MainWindow once it has loaded. Never
+    /// throws (UpdateChecker swallows every failure); a newer release puts up the banner.</summary>
+    public async Task CheckForUpdateAsync()
+    {
+        var info = await UpdateChecker.CheckAsync().ConfigureAwait(false);
+        if (info is not null)
+            RunOnUiThread(() => ShowUpdate(info)); // the HTTP continuation resumes off the UI thread
+    }
+
+    /// <summary>Puts the update banner up for <paramref name="info"/>. Separate from the check so
+    /// the screenshot harness can show it for a made-up newer release.</summary>
+    public void ShowUpdate(UpdateChecker.UpdateInfo info)
+    {
+        _updateUrl = info.HtmlUrl;
+        UpdateVersionText = info.DisplayVersion;
+        HasUpdateAvailable = true;
+    }
+
+    private void OpenUpdate()
+    {
+        if (_updateUrl is null) return;
+
+        // Defence in depth: UpdateChecker only stores a link into this project's own GitHub
+        // releases, but a network-sourced value isn't shell-opened without checking it again, with
+        // the same predicate rather than a second hand-written copy of it.
+        if (!Uri.TryCreate(_updateUrl, UriKind.Absolute, out var uri) || !UpdateChecker.IsThisRepository(uri))
+            return;
+
+        try
+        {
+            // uri.AbsoluteUri, not _updateUrl: the check above was on the parsed Uri.
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(uri.AbsoluteUri) { UseShellExecute = true });
+        }
+        catch
+        {
+            // best effort - a failed browser launch never throws into the UI
+        }
     }
 
     /// <summary>Called once from Window_Closing, right before the final ProjectStore.Save - folds
@@ -319,7 +405,14 @@ public sealed class MainViewModel : ObservableObject, IDisposable
         OnPropertyChanged(nameof(CanUndoDeleteSlot));
         UndoDeleteSlotCommand.RaiseCanExecuteChanged();
 
-        if (SelectedProject is null) return;
+        if (SelectedProject is null)
+        {
+            // Last project deleted: empty the overlay's lists and totals too, so its placeholders
+            // describe what's actually there rather than the project that's gone.
+            RebuildUnloadingSites();
+            RecomputeTripSummary();
+            return;
+        }
 
         foreach (var slot in SelectedProject.Model.Slots)
             SlotRows.Add(new SlotRowViewModel(slot, OnSlotChanged, _layoutVariantCatalog));
@@ -435,11 +528,13 @@ public sealed class MainViewModel : ObservableObject, IDisposable
         UnloadingSites.Clear();
         if (SelectedProject is null)
         {
-            OnPropertyChanged(nameof(ShowNoActiveStationsMessage));
+            AllActiveSlotsCompleted = false;
+            RaisePlaceholderChanges();
             return;
         }
         var project = SelectedProject.Model;
         var depots = _tracker.GetDepotsForSystem(project.SystemName).ToList();
+        AllActiveSlotsCompleted = project.Slots.Any(s => s.Active) && project.Slots.Where(s => s.Active).All(s => s.Completed);
 
         foreach (var slot in project.Slots.Where(NeedsHauling))
         {
@@ -478,7 +573,7 @@ public sealed class MainViewModel : ObservableObject, IDisposable
             UnloadingSites.Add(new UnloadingSiteViewModel(displayName, slot.Body, remaining, depot is not null));
         }
 
-        OnPropertyChanged(nameof(ShowNoActiveStationsMessage));
+        RaisePlaceholderChanges();
     }
 
     /// <summary>Finds the live depot (if any) matching a slot's own Name field, tolerating the

@@ -107,6 +107,7 @@ public partial class MainWindow : Window
         DataContext = _viewModel;
 
         RegisterConfiguredHotkeys();
+        _ = _viewModel.CheckForUpdateAsync(); // the one check per launch; never throws
     }
 
     private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

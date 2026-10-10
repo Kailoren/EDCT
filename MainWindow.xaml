@@ -63,6 +63,24 @@
             </Grid>
         </Border>
 
+        <!-- Update banner: dismissible and non-blocking (it never covers the tabs), shown when
+             UpdateChecker finds a newer GitHub release than the one running. Same as FleetFinder's. -->
+        <Border DockPanel.Dock="Top" Background="{StaticResource Accent}" Padding="12,6"
+                Visibility="{Binding HasUpdateAvailable, Converter={StaticResource BoolToVisibleConverter}}">
+            <Grid>
+                <TextBlock VerticalAlignment="Center" Foreground="{StaticResource WindowBackground}" FontWeight="SemiBold">
+                    <Run Text="A new version ("/><Run Text="{Binding UpdateVersionText, Mode=OneWay}"/><Run Text=") is available."/>
+                </TextBlock>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="Download" Command="{Binding OpenUpdateCommand}"
+                            Background="{StaticResource WindowBackground}" Foreground="{StaticResource WindowForeground}"
+                            Padding="12,4" Margin="0,0,8,0"/>
+                    <Button Content="Dismiss" Command="{Binding DismissUpdateCommand}"
+                            Background="Transparent" Foreground="{StaticResource WindowBackground}" Padding="8,4"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
         <Border DockPanel.Dock="Bottom" Background="{StaticResource Panel}" Padding="16,8">
             <DockPanel>
                 <Button Content="Rescan Journal" Style="{StaticResource SecondaryButton}" DockPanel.Dock="Right"

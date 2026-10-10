@@ -76,7 +76,9 @@ Open **Settings** at the top right of the main window.
 - Internet access for the hub station prices and sheet imports. Everything else works offline.
 
 ### Installing:
-Run `ColonyTracker.exe` with the `Data` folder next to it. Your projects and settings are saved in that same folder. There's no installer and nothing else to set up, it's a single self-contained program.
+Download the latest release, then run `ColonyTracker.exe` with the `Data` folder next to it. Your projects and settings are saved in that same folder. There's no installer and nothing else to set up, it's a single self-contained program.
+
+EDCT checks this repo's releases when it starts and shows a banner when a newer version is available.
 
 ### Known limitations:
 - Transfers to and from a squadron carrier can't be tracked automatically, because the game doesn't write them to the journal. Only your own carrier is tracked.
