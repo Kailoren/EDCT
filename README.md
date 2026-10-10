@@ -2,7 +2,7 @@
 
 <img width="160" height="160" alt="EDCT" src="docs/logo.png" />
 
-# EDCT
+# Elite Dangerous Colonisation Tracker
 [![License](https://img.shields.io/badge/license-MIT-green?style=plastic)](LICENSE)
 ![Platform](https://img.shields.io/badge/platform-Windows-blue?style=plastic)
 
