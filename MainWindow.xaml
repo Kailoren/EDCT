@@ -215,9 +215,10 @@
                                     <DataGridTemplateColumn x:Name="LayoutCompletedColumn" Header="Completed" Width="75">
                                         <DataGridTemplateColumn.CellTemplate>
                                             <DataTemplate>
-                                                <!-- Manually toggleable, but also auto-checked once this slot's live
-                                                     depot data shows nothing remaining - see MainViewModel.
-                                                     RebuildUnloadingSites. -->
+                                                <!-- A Completed slot drops out of Cargo Hauling and the overlay even
+                                                     while Active is ticked. Manually toggleable, but also auto-checked
+                                                     on an active slot once its live depot data shows nothing
+                                                     remaining - see MainViewModel.AutoCompleteFinishedSites. -->
                                                 <CheckBox IsChecked="{Binding Completed, UpdateSourceTrigger=PropertyChanged}"
                                                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             </DataTemplate>

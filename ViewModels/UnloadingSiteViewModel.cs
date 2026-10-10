@@ -3,7 +3,7 @@ namespace ColonyTracker.ViewModels;
 public sealed record RemainingCommodity(string Name, int Remaining);
 
 /// <summary>
-/// One active construction slot's live delivery status for the overlay's Unloading mode -
+/// One active, not yet completed construction slot's live delivery status for the overlay's Unloading mode -
 /// correlated to a live-tracked depot by matching the slot's own Name against the depot's
 /// journal-reported StationName (the same assumption the Raven Colonial import already relies on:
 /// the player's own custom site name becomes the station's actual in-game name once built).

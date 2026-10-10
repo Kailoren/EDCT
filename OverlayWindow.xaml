@@ -156,7 +156,7 @@
                     </ScrollViewer>
                 </Grid>
 
-                <!-- Unloading mode: one section per active construction slot, showing what's still
+                <!-- Unloading mode: one section per active, not yet completed construction slot, showing what's still
                      owed to that specific site. Single "Remaining" column, unlike Loading's
                      Need/Supply pair - there's only one live number here. -->
                 <Grid x:Name="RemainingHeader" DockPanel.Dock="Top" Margin="8,2,0,0">

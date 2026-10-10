@@ -10,8 +10,9 @@ public sealed record StructureCatalog(List<CommodityInfo> Commodities, List<Stru
 
 /// <summary>
 /// One planned construction site within a colony project: a body/slot pairing, an optional
-/// station name, the structure type to build there, and whether it's currently an active build
-/// (i.e. should count toward commodity totals). Mirrors a row of a colony tab in the spreadsheet.
+/// station name, the structure type to build there, whether it's currently an active build and
+/// whether it's finished. Only slots that are Active and not Completed count toward the Cargo
+/// Hauling figures and the overlay. Mirrors a row of a colony tab in the spreadsheet.
 /// </summary>
 public sealed class ConstructionSlot
 {
@@ -29,10 +30,12 @@ public sealed class ConstructionSlot
     public string? Notes { get; set; }
     public bool Active { get; set; }
 
-    /// <summary>Manually toggleable, but also auto-set true once this slot's live depot data shows
-    /// nothing remaining (see MainViewModel.RebuildUnloadingSites) - never auto-cleared back to
-    /// false, so a manual uncheck sticks unless the player unchecks it again after a later delivery
-    /// re-triggers the same fully-delivered state.</summary>
+    /// <summary>A finished build. A Completed slot is left out of every Cargo Hauling figure and
+    /// both overlay lists even while Active is still ticked. Manually toggleable, but also auto-set
+    /// true on an active slot once its live depot data shows nothing remaining (see
+    /// MainViewModel.AutoCompleteFinishedSites). That only happens when depot data arrives, never
+    /// on a grid edit, and it never clears the flag, so a manual uncheck sticks until the next depot
+    /// update the journal reports.</summary>
     public bool Completed { get; set; }
 }
 

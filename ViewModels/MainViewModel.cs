@@ -19,6 +19,10 @@ public sealed class MainViewModel : ObservableObject, IDisposable
     private bool _relayRefreshInFlight;
     private bool _relayRefreshPending;
 
+    // Set while AutoCompleteFinishedSites ticks Completed on several rows at once, so each row's
+    // change callback doesn't run its own full recompute; the caller does one afterwards.
+    private bool _applyingAutoComplete;
+
     public AppSettings Settings { get; }
     public string JournalDirectory { get; }
 
@@ -106,8 +110,8 @@ public sealed class MainViewModel : ObservableObject, IDisposable
     public bool IsLoadingMode => !ShowUnloadingOverlay;
 
     /// <summary>Drives the overlay's "No active stations in the System Plan tab." placeholder -
-    /// only while in Unloading mode AND there's genuinely nothing to show, not just whenever
-    /// Unloading mode is selected.</summary>
+    /// only while in Unloading mode AND there's genuinely nothing to show (no slot that is Active
+    /// and not yet Completed), not just whenever Unloading mode is selected.</summary>
     public bool ShowNoActiveStationsMessage => ShowUnloadingOverlay && UnloadingSites.Count == 0;
 
     /// <summary>Drives the overlay's "Everything delivered!" placeholder - only while in Loading
@@ -290,9 +294,16 @@ public sealed class MainViewModel : ObservableObject, IDisposable
         return true;
     }
 
+    /// <summary>Any edit to a slot row, including ticking Active or Completed in the grid (and the
+    /// auto-tick, via AutoCompleteFinishedSites). Recomputes every Cargo Hauling figure and both
+    /// overlay lists straight away. When that brings commodities back (Active ticked, Completed
+    /// unticked), their rows are new and have no hub source yet, so the hub search runs for them
+    /// too: the overlay's Loading list only shows rows that have one.</summary>
     private void OnSlotChanged()
     {
-        RecomputeCommodityRows();
+        if (_applyingAutoComplete) return;
+        if (RecomputeCommodityRows())
+            _ = RefreshHubPricesAsync();
         ScheduleSave();
     }
 
@@ -313,7 +324,51 @@ public sealed class MainViewModel : ObservableObject, IDisposable
         foreach (var slot in SelectedProject.Model.Slots)
             SlotRows.Add(new SlotRowViewModel(slot, OnSlotChanged, _layoutVariantCatalog));
 
+        AutoCompleteFinishedSites(); // depots already seen this session may show a build in this project is done
         RecomputeAndRefreshHubPrices(); // one-time search on load/project switch - no more periodic timer
+    }
+
+    /// <summary>
+    /// Whether a slot still needs hauling for: an Active build that isn't Completed yet. Every
+    /// Cargo Hauling figure (required, delivered, still needed, trip counts, the hub search) and
+    /// both overlay lists go through this, so a finished build drops out of all of them at once,
+    /// whether Completed was ticked by hand or by AutoCompleteFinishedSites.
+    /// </summary>
+    private static bool NeedsHauling(ConstructionSlot slot) => slot.Active && !slot.Completed;
+
+    /// <summary>
+    /// Ticks Completed on every slot that still needs hauling but whose live depot shows nothing
+    /// left to deliver. Runs when live depot data arrives (OnDepotUpdated) and on a project switch,
+    /// not on every grid edit, so unticking Completed by hand sticks until the next depot update;
+    /// it only ever sets Completed, never clears it. Goes through the row view model so the grid's
+    /// checkbox updates too, with each row's own recompute held off until every tick is in.
+    /// Returns whether anything was ticked; the caller recomputes the hauling figures.
+    /// </summary>
+    private bool AutoCompleteFinishedSites()
+    {
+        if (SelectedProject is null) return false;
+        var depots = _tracker.GetDepotsForSystem(SelectedProject.Model.SystemName).ToList();
+        var finished = SelectedProject.Model.Slots
+            .Where(s => NeedsHauling(s) && MatchDepot(s, depots) is { } depot && depot.Resources.All(r => r.Remaining == 0))
+            .ToList();
+        if (finished.Count == 0) return false;
+
+        _applyingAutoComplete = true;
+        try
+        {
+            foreach (var slot in finished)
+            {
+                var row = SlotRows.FirstOrDefault(r => r.Model == slot);
+                if (row is not null) row.Completed = true;
+                else slot.Completed = true;
+            }
+        }
+        finally
+        {
+            _applyingAutoComplete = false;
+        }
+        ScheduleSave();
+        return true;
     }
 
     private void RecomputeAndRefreshHubPrices()
@@ -322,15 +377,18 @@ public sealed class MainViewModel : ObservableObject, IDisposable
         _ = RefreshHubPricesAsync();
     }
 
-    /// <summary>Rebuilds required/carrier totals from the current slot plan. Existing row objects are
-    /// reused where possible so an in-progress Carrier edit isn't disrupted by unrelated updates.</summary>
-    private void RecomputeCommodityRows()
+    /// <summary>Rebuilds required/carrier totals from the slots that still need hauling (Active and
+    /// not Completed), then the live amounts and the overlay's Unloading list. Existing row objects
+    /// are reused where possible so an in-progress Carrier edit isn't disrupted by unrelated
+    /// updates. Returns whether any commodity row was added (those have no hub source yet).</summary>
+    private bool RecomputeCommodityRows()
     {
-        if (SelectedProject is null) return;
+        if (SelectedProject is null) return false;
         var project = SelectedProject.Model;
+        var added = false;
 
         var requiredTotals = new Dictionary<string, int>();
-        foreach (var slot in project.Slots.Where(s => s.Active))
+        foreach (var slot in project.Slots.Where(NeedsHauling))
         {
             var structure = _catalog.Structures.FirstOrDefault(s => string.Equals(s.Name, slot.StructureType, StringComparison.OrdinalIgnoreCase));
             if (structure is null) continue;
@@ -351,11 +409,12 @@ public sealed class MainViewModel : ObservableObject, IDisposable
                 row.SetCarrierSilently(project.CarrierStock.GetValueOrDefault(key));
                 _rowsByCommodity[commodity.Name] = row;
                 CommodityRows.Add(row);
+                added = true;
             }
             row.Required = required;
         }
 
-        // drop rows for commodities no longer required by any active slot
+        // drop rows for commodities no longer required by any slot that still needs hauling
         foreach (var name in _rowsByCommodity.Keys.Where(n => !stillNeededNames.Contains(n)).ToList())
         {
             CommodityRows.Remove(_rowsByCommodity[name]);
@@ -364,11 +423,13 @@ public sealed class MainViewModel : ObservableObject, IDisposable
 
         RefreshLiveAmounts();
         RebuildUnloadingSites();
+        return added;
     }
 
-    /// <summary>Rebuilds the overlay's Unloading-mode list: one entry per active slot, correlated to
-    /// a live depot (if the player has docked there this session) by matching the slot's own Name
-    /// against the depot's journal-reported station name.</summary>
+    /// <summary>Rebuilds the overlay's Unloading-mode list: one entry per slot that still needs
+    /// hauling (Active, not Completed), correlated to a live depot (if the player has docked there
+    /// this session) by matching the slot's own Name against the depot's journal-reported station
+    /// name. Ticking Completed, by hand or automatically, takes a site off this list.</summary>
     private void RebuildUnloadingSites()
     {
         UnloadingSites.Clear();
@@ -380,7 +441,7 @@ public sealed class MainViewModel : ObservableObject, IDisposable
         var project = SelectedProject.Model;
         var depots = _tracker.GetDepotsForSystem(project.SystemName).ToList();
 
-        foreach (var slot in project.Slots.Where(s => s.Active))
+        foreach (var slot in project.Slots.Where(NeedsHauling))
         {
             var depot = MatchDepot(slot, depots);
 
@@ -411,17 +472,9 @@ public sealed class MainViewModel : ObservableObject, IDisposable
                     .ToList() ?? [];
             }
 
-            // Auto-check Completed once this site's live data shows nothing remaining - only ever
-            // sets it true, never clears it back, so a manual uncheck of an actually-finished site
-            // doesn't just get immediately overwritten on the next depot update (though delivering
-            // anything further to it would re-trigger this and re-check it).
-            if (depot is not null && remaining.Count == 0 && !slot.Completed)
-            {
-                var rowVm = SlotRows.FirstOrDefault(r => r.Model == slot);
-                if (rowVm is not null) rowVm.Completed = true;
-                else slot.Completed = true;
-            }
-
+            // A site with live data and nothing remaining is normally ticked Completed by
+            // AutoCompleteFinishedSites before this runs. It can only be here if the player
+            // unticked it by hand since, and then it shows the overlay's "Fully delivered!" note.
             UnloadingSites.Add(new UnloadingSiteViewModel(displayName, slot.Body, remaining, depot is not null));
         }
 
@@ -432,8 +485,8 @@ public sealed class MainViewModel : ObservableObject, IDisposable
     /// game's actual station-name format of "&lt;Orbital/Planetary&gt; Construction Site:
     /// &lt;player-given name&gt;" - an exact match against the slot's own (shorter) Name never
     /// succeeds (confirmed via diagnostic logging 2026-07-31). Shared by RefreshLiveAmounts (to
-    /// scope Delivered to only currently-active slots' own depots) and RebuildUnloadingSites (the
-    /// overlay's per-site view).</summary>
+    /// scope Delivered to only the depots of slots that still need hauling), RebuildUnloadingSites
+    /// (the overlay's per-site view) and AutoCompleteFinishedSites.</summary>
     private static ConstructionSiteState? MatchDepot(ConstructionSlot slot, IReadOnlyList<ConstructionSiteState> depots) =>
         !string.IsNullOrWhiteSpace(slot.Name)
             ? depots.FirstOrDefault(d => d.StationName is not null && d.StationName.EndsWith(slot.Name, StringComparison.OrdinalIgnoreCase))
@@ -528,19 +581,19 @@ public sealed class MainViewModel : ObservableObject, IDisposable
         if (SelectedProject is null) return;
         var project = SelectedProject.Model;
 
-        // Scoped to only the currently active slots' own matched depots - GetDepotsForSystem alone
-        // returns every depot ever seen in the system this session regardless of Active, so a
-        // completed/no-longer-active station's delivered total would otherwise keep counting
-        // toward whatever's currently active forever (e.g. still showing StillNeeded=0 for a brand
-        // new station's commodities just because a *previous, unrelated* station already delivered
-        // that much of them).
+        // Scoped to only the matched depots of slots that still need hauling (Active, not
+        // Completed) - GetDepotsForSystem alone returns every depot ever seen in the system this
+        // session regardless of either flag, so a completed or no-longer-active station's
+        // delivered total would otherwise keep counting toward whatever's still being built
+        // forever (e.g. still showing StillNeeded=0 for a brand new station's commodities just
+        // because a *previous, unrelated* station already delivered that much of them).
         var allDepots = _tracker.GetDepotsForSystem(project.SystemName).ToList();
-        var activeDepots = project.Slots.Where(s => s.Active)
+        var haulingDepots = project.Slots.Where(NeedsHauling)
             .Select(s => MatchDepot(s, allDepots))
             .Where(d => d is not null);
 
         var deliveredTotals = new Dictionary<string, int>();
-        foreach (var depot in activeDepots)
+        foreach (var depot in haulingDepots)
             foreach (var res in depot!.Resources)
             {
                 var key = CommodityNameMatcher.Normalize(res.DisplayName);
@@ -586,8 +639,18 @@ public sealed class MainViewModel : ObservableObject, IDisposable
         RunOnUiThread(() =>
         {
             LastEventText = $"Construction update at {state.DisplayLocation} - {state.ConstructionProgress:P0} complete ({DateTimeOffset.Now:T})";
-            RefreshLiveAmounts();
-            RebuildUnloadingSites();
+            // A depot with nothing left to deliver means that build is done: tick it Completed and
+            // take it out of every hauling figure. Otherwise only the live amounts and the
+            // per-site list change.
+            if (AutoCompleteFinishedSites())
+            {
+                RecomputeCommodityRows();
+            }
+            else
+            {
+                RefreshLiveAmounts();
+                RebuildUnloadingSites();
+            }
         });
 
     private void OnCargoUpdated(IReadOnlyDictionary<string, int> cargo) =>
