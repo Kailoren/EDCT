@@ -17,7 +17,9 @@ A Windows desktop tool for **Elite Dangerous** colonisation. Plan the structures
 ### What it does:
 The app has two tabs and an in-game overlay:
 
-- **System Plan:** Lay out each colony system body by body: which slot gets which structure, and which builds are active right now. The full build-cost catalogue is built in, including the higher-cost primary versions of each station. Start a new project from scratch, from a link to a colonisation planning Google Sheet, or from a Raven Colonial export.
+- **System Plan:** Lay out each colony system body by body: which slot gets which structure, and which builds are active right now. The full build-cost catalogue is built in, including the higher-cost primary versions of each station. Start a new project from scratch, or import a system you've already planned (see [Importing a system](#importing-a-system) below).
+
+  <img width="1720" height="996" alt="System Plan" src="screenshots/system-plan.png" />
 
 - **Cargo Hauling:** One list of every commodity your active builds need, with how much is required, delivered, on your ship, on your fleet carrier, and still needed. The delivered, ship and carrier figures update by themselves from the game:
   - what the construction site has received, from the game's own depot reports
@@ -26,12 +28,27 @@ The app has two tabs and an in-game overlay:
 
   It also works out how many trips are left at your ship's and your carrier's capacity, and shows which of your hub stations currently has the best stock of each commodity, so you know where to load next.
 
+  <img width="1720" height="996" alt="Cargo Hauling" src="screenshots/cargo-hauling.png" />
+
 - **Overlay:** A small see-through window that sits on top of the game and shows only what's still needed, or where you're unloading. Lock it so clicks go straight through to the game, set its colours and transparency, and show, hide or lock it with your own hotkeys while you play.
+
+  <img width="400" height="800" alt="The overlay in Loading mode" src="screenshots/overlay.png" />
 
 If the numbers ever look off, **Rescan Journal** reads the current session's journal again from the start.
 
+### Importing a system:
+New Project has three ways in: **Create from scratch**, **Reference from sheet** and **Import Raven Colonial JSON export**.
+
+**From your own copy of DaftMav's sheet.** The sheet import is built around DaftMav's community planning sheet (Colonization Construction v3), so **it has to be your own copy of that sheet**. Other planning sheets lay their columns out differently and won't be read correctly.
+1. Make your own copy of DaftMav's sheet with [this "make a copy" link](https://docs.google.com/spreadsheets/d/1jsZOzNJSnPIWlU88puOc9gQXvsw-MGp8meoQ6k-Yj-Y/copy?usp=sharing) (from his [Frontier forums post](https://forums.frontier.co.uk/threads/v3-of-the-colonization-construction-spreadsheet-is-now-available.635762/)), then plan the system on its tab.
+2. Click **Share** and set General access to **Anyone with the link** (Viewer). EDCT can't read the sheet otherwise.
+3. Open the system's tab and copy the URL from your browser's address bar. Don't use the Share dialog's **Copy link** button, because that link may not point at the tab you want.
+4. In EDCT, choose **New Project**, pick **Reference from sheet** and paste the link. If you leave the system name blank, it's taken from the sheet (cell D1).
+
+**From Raven Colonial.** Export a backup of the system from [ravencolonial.com](https://ravencolonial.com), pick **Import Raven Colonial JSON export**, then browse for the file or paste its contents. The system name and body labels come from the file.
+
 ### Where the data comes from:
-- **Build costs** come from the community colonisation planning sheet (Colonization Construction v3 by DaftMav) and SrvSurvey's colonisation cost data.
+- **Build costs** come from DaftMav's community colonisation planning sheet ([Colonization Construction v3](https://forums.frontier.co.uk/threads/v3-of-the-colonization-construction-spreadsheet-is-now-available.635762/)) and SrvSurvey's colonisation cost data.
 - **Your progress** comes from your own game journal and cargo file, read on your PC.
 - **Hub station stock** comes from the same EDDN-fed relay that EDCF uses. Please run a journal reporting tool such as [EDDiscovery](https://github.com/EDDiscovery/EDDiscovery) or [EDMarketConnector](https://github.com/EDCD/EDMarketConnector) to help keep that data fresh for everyone.
 
