@@ -1,0 +1,24 @@
+# Build output
+[Bb]in/
+[Oo]bj/
+publish/
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.user
+*.suo
+
+# Runtime files written into Data/ at run time (see SettingsStore.cs, ProjectStore.cs and App.xaml.cs)
+settings.json
+projects.json
+*.corrupt-*
+colonytracker-crash.log
+
+# Local backups
+*.bak
+*.bak-*
+
+# OS cruft
+Thumbs.db
+Desktop.ini

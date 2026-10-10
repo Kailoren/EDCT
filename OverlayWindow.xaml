@@ -1,0 +1,261 @@
+<Window x:Class="ColonyTracker.OverlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="ColonyTracker Overlay"
+        WindowStyle="None" AllowsTransparency="True" Background="Transparent"
+        Topmost="True" ShowInTaskbar="False" ResizeMode="NoResize"
+        MinWidth="200" MinHeight="120"
+        FontFamily="Segoe UI" FontSize="12" TextElement.Foreground="{DynamicResource OverlayText}">
+    <Grid>
+        <Border Background="{DynamicResource OverlayBackground}" BorderBrush="{DynamicResource OverlayBorder}" BorderThickness="1" CornerRadius="6">
+            <Border.LayoutTransform>
+                <ScaleTransform x:Name="ContentScale" ScaleX="1" ScaleY="1"/>
+            </Border.LayoutTransform>
+            <DockPanel Margin="10" MouseLeftButtonDown="DragArea_MouseLeftButtonDown" Grid.IsSharedSizeScope="True">
+                <Grid DockPanel.Dock="Top" Margin="0,0,0,6">
+                    <TextBlock Text="{Binding SelectedProject.SystemName}" FontWeight="SemiBold"
+                               Foreground="{DynamicResource OverlayHeader}" TextTrimming="CharacterEllipsis"/>
+                    <StackPanel x:Name="Controls" Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="-" Width="20" Height="20" Padding="0" Background="{DynamicResource OverlayButton}"
+                                Foreground="{DynamicResource OverlayButtonText}" Click="ScaleDown_Click"/>
+                        <Button Content="+" Width="20" Height="20" Padding="0" Margin="4,0,0,0" Background="{DynamicResource OverlayButton}"
+                                Foreground="{DynamicResource OverlayButtonText}" Click="ScaleUp_Click"/>
+                        <Button Content="&#x2715;" Width="20" Height="20" Padding="0" Margin="4,0,0,0"
+                                Style="{StaticResource CloseCaptionButton}" Click="Close_Click"/>
+                    </StackPanel>
+                </Grid>
+                <!-- Loading/Unloading mode toggle - the inactive button gets its own customizable
+                     muted fill so the active one (the overlay's own customizable button color) reads as selected. -->
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="0,0,0,6">
+                    <Button x:Name="LoadingModeButton" Content="Loading" Padding="8,3" FontSize="11"
+                            Foreground="{DynamicResource OverlayButtonText}" Click="LoadingModeButton_Click">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                <Setter Property="Background" Value="{DynamicResource OverlayButton}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ShowUnloadingOverlay}" Value="True">
+                                        <Setter Property="Background" Value="{DynamicResource OverlayInactiveButton}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <Button x:Name="UnloadingModeButton" Content="Unloading" Padding="8,3" FontSize="11" Margin="4,0,0,0"
+                            Foreground="{DynamicResource OverlayButtonText}" Click="UnloadingModeButton_Click">
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                                <Setter Property="Background" Value="{DynamicResource OverlayButton}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ShowUnloadingOverlay}" Value="False">
+                                        <Setter Property="Background" Value="{DynamicResource OverlayInactiveButton}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </StackPanel>
+
+                <!-- Loading mode: existing "where to buy still-needed commodities" view. -->
+                <Grid x:Name="NeedSupplyHeader" DockPanel.Dock="Top" Margin="8,2,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="OverlayNeedColumn"/>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="OverlaySupplyColumn"/>
+                        <!-- Reserves the same width the scrollbar below always occupies (see that
+                             ScrollViewer's own comment) - without this, "Need"/"Supply" sit 12px
+                             further right than the actual numbers underneath them. -->
+                        <ColumnDefinition Width="12"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <!-- Unloading mode has its own single-column "Remaining" header below -
+                                     this one only ever belongs to the Loading list. -->
+                                <DataTrigger Binding="{Binding IsLoadingMode}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding IsLoadingMode}" Value="True"/>
+                                        <Condition Binding="{Binding TotalStillNeeded}" Value="0"/>
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <TextBlock Grid.Column="1" Text="Need" FontSize="10" Foreground="{DynamicResource OverlayMuted}"
+                               HorizontalAlignment="Right" Margin="0,0,8,0"/>
+                    <TextBlock Grid.Column="2" Text="Supply" FontSize="10" Foreground="{DynamicResource OverlayMuted}"
+                               HorizontalAlignment="Right"/>
+                </Grid>
+                <!-- Visible (not Auto) so the 12px scrollbar gutter is *always* reserved, not just
+                     when there happen to be enough rows to need scrolling - the Need/Supply header
+                     above sits outside this ScrollViewer, so if the gutter only appeared sometimes,
+                     the header and the real number columns would drift apart exactly whenever the
+                     list is long enough to scroll (worse at larger overlay scale, since fewer rows
+                     fit before that happens). Width is bound to the header's own ActualWidth rather
+                     than left to size itself: this ScrollViewer is a DockPanel child with no Dock set,
+                     which defaults to Left - that stretches to fill the remaining *height* but only
+                     ever claims as much *width* as its own content wants, so unlike the header
+                     (Dock="Top", always stretched to the panel's full width) it never actually tracked
+                     the panel's right edge on resize without this. -->
+                <Grid Visibility="{Binding IsLoadingMode, Converter={StaticResource BoolToVisibleConverter}}">
+                    <TextBlock Text="Everything collected!" FontSize="18" FontWeight="SemiBold" FontStyle="Italic"
+                               Foreground="{DynamicResource OverlayMuted}"
+                               HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                               Visibility="{Binding ShowEverythingDeliveredMessage, Converter={StaticResource BoolToVisibleConverter}}"/>
+                    <ScrollViewer VerticalScrollBarVisibility="Visible" Width="{Binding ActualWidth, ElementName=NeedSupplyHeader}">
+                        <ItemsControl x:Name="CommodityList">
+                            <ItemsControl.GroupStyle>
+                                <!-- Outer level: hub system -->
+                                <GroupStyle>
+                                    <GroupStyle.HeaderTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Name}" FontWeight="Bold"
+                                                       Foreground="{DynamicResource OverlayHeader}" Margin="0,8,0,2"/>
+                                        </DataTemplate>
+                                    </GroupStyle.HeaderTemplate>
+                                </GroupStyle>
+                                <!-- Inner level: station within that system - Items[0] is safe since a
+                                     CollectionViewGroup is never materialized empty, and every item in
+                                     this group shares the same BestSourceIsOrbital (they're grouped by
+                                     the station that value belongs to). -->
+                                <GroupStyle>
+                                    <GroupStyle.HeaderTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Margin="8,3,0,1">
+                                                <Image Source="{Binding Items[0].BestSourceIsOrbital, Converter={StaticResource OrbitalToIconConverter}}"
+                                                       Width="12" Height="12" Margin="0,0,4,0" VerticalAlignment="Center"/>
+                                                <TextBlock Text="{Binding Name}" FontWeight="SemiBold" FontSize="11"
+                                                           Foreground="{DynamicResource OverlayMuted}" VerticalAlignment="Center"/>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </GroupStyle.HeaderTemplate>
+                                </GroupStyle>
+                            </ItemsControl.GroupStyle>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="16,1,0,1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="OverlayNeedColumn"/>
+                                            <ColumnDefinition Width="Auto" SharedSizeGroup="OverlaySupplyColumn"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Name}" TextTrimming="CharacterEllipsis" Margin="0,0,10,0"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding StillNeeded, StringFormat={}{0:N0}}"
+                                                   FontWeight="SemiBold" Foreground="{DynamicResource OverlayHeader}"
+                                                   HorizontalAlignment="Right" Margin="0,0,8,0"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding BestSourceStock, StringFormat={}{0:N0}}" Foreground="{DynamicResource OverlayMuted}"
+                                                   HorizontalAlignment="Right"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Grid>
+
+                <!-- Unloading mode: one section per active construction slot, showing what's still
+                     owed to that specific site. Single "Remaining" column, unlike Loading's
+                     Need/Supply pair - there's only one live number here. -->
+                <Grid x:Name="RemainingHeader" DockPanel.Dock="Top" Margin="8,2,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto" SharedSizeGroup="OverlayRemainingColumn"/>
+                        <!-- Same scrollbar-gutter reservation as the Loading header above - keeps this
+                             label aligned with the numbers below it once the list scrolls. -->
+                        <ColumnDefinition Width="12"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.Style>
+                        <Style TargetType="Grid">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ShowUnloadingOverlay}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ShowNoActiveStationsMessage}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Grid.Style>
+                    <TextBlock Grid.Column="1" Text="Remaining" FontSize="10" Foreground="{DynamicResource OverlayMuted}"
+                               HorizontalAlignment="Right"/>
+                </Grid>
+                <TextBlock DockPanel.Dock="Top" Text="No active stations in the System Plan tab." Foreground="{DynamicResource OverlayMuted}"
+                           Margin="0,4,0,0" FontStyle="Italic"
+                           Visibility="{Binding ShowNoActiveStationsMessage, Converter={StaticResource BoolToVisibleConverter}}"/>
+                <ScrollViewer VerticalScrollBarVisibility="Visible" Width="{Binding ActualWidth, ElementName=RemainingHeader}"
+                              Visibility="{Binding ShowUnloadingOverlay, Converter={StaticResource BoolToVisibleConverter}}">
+                    <ItemsControl ItemsSource="{Binding UnloadingSites}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Margin="0,6,0,2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding DisplayName}" FontWeight="Bold" Foreground="{DynamicResource OverlayHeader}"/>
+                                        <TextBlock Text="{Binding Body, StringFormat=' - {0}'}" FontSize="10"
+                                                   Foreground="{DynamicResource OverlayMuted}" VerticalAlignment="Bottom" Margin="4,0,0,0">
+                                            <TextBlock.Style>
+                                                <Style TargetType="TextBlock">
+                                                    <Setter Property="Visibility" Value="Visible"/>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Body}" Value="{x:Null}">
+                                                            <Setter Property="Visibility" Value="Collapsed"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </TextBlock.Style>
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <TextBlock Text="Fully delivered!" FontSize="18" FontWeight="SemiBold" FontStyle="Italic"
+                                               Foreground="{DynamicResource OverlayMuted}"
+                                               HorizontalAlignment="Center" TextAlignment="Center" Margin="0,4,0,0">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                <Style.Triggers>
+                                                    <MultiDataTrigger>
+                                                        <MultiDataTrigger.Conditions>
+                                                            <Condition Binding="{Binding HasLiveData}" Value="True"/>
+                                                            <Condition Binding="{Binding RemainingCommodities.Count}" Value="0"/>
+                                                        </MultiDataTrigger.Conditions>
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                    </MultiDataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <ItemsControl ItemsSource="{Binding RemainingCommodities}">
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <Grid Margin="8,1,0,1">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="Auto" SharedSizeGroup="OverlayRemainingColumn"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Grid.Column="0" Text="{Binding Name}" TextTrimming="CharacterEllipsis" Margin="0,0,10,0"/>
+                                                    <TextBlock Grid.Column="1" Text="{Binding Remaining, StringFormat={}{0:N0}}"
+                                                               FontWeight="SemiBold" Foreground="{DynamicResource OverlayHeader}"
+                                                               HorizontalAlignment="Right"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </DockPanel>
+        </Border>
+
+        <Path x:Name="ResizeGrip" Data="M0,10 L10,0 M4,10 L10,4 M8,10 L10,8"
+              Stroke="{DynamicResource OverlayMuted}" StrokeThickness="1.3"
+              Width="10" Height="10" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,5,5"
+              Cursor="SizeNWSE"
+              MouseLeftButtonDown="ResizeGrip_MouseLeftButtonDown"
+              MouseMove="ResizeGrip_MouseMove"
+              MouseLeftButtonUp="ResizeGrip_MouseLeftButtonUp"/>
+    </Grid>
+</Window>

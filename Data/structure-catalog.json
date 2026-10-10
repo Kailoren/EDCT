@@ -1,0 +1,1884 @@
+{
+  "commodities": [
+    {
+      "name": "Liquid Oxygen",
+      "category": "Chemicals"
+    },
+    {
+      "name": "Pesticides",
+      "category": "Chemicals"
+    },
+    {
+      "name": "Surface Stabilisers",
+      "category": "Chemicals"
+    },
+    {
+      "name": "Water",
+      "category": "Chemicals"
+    },
+    {
+      "name": "Evacuation Shelter",
+      "category": "Consumer Items"
+    },
+    {
+      "name": "Survival Equipment",
+      "category": "Consumer Items"
+    },
+    {
+      "name": "Beer",
+      "category": "Legal Drugs"
+    },
+    {
+      "name": "Liquor",
+      "category": "Legal Drugs"
+    },
+    {
+      "name": "Wine",
+      "category": "Legal Drugs"
+    },
+    {
+      "name": "Animal Meat",
+      "category": "Foods"
+    },
+    {
+      "name": "Coffee",
+      "category": "Foods"
+    },
+    {
+      "name": "Fish",
+      "category": "Foods"
+    },
+    {
+      "name": "Food Cartridges",
+      "category": "Foods"
+    },
+    {
+      "name": "Fruit and Vegetables",
+      "category": "Foods"
+    },
+    {
+      "name": "Grain",
+      "category": "Foods"
+    },
+    {
+      "name": "Tea",
+      "category": "Foods"
+    },
+    {
+      "name": "Ceramic Composites",
+      "category": "Industrial Materials"
+    },
+    {
+      "name": "CMM Composite",
+      "category": "Industrial Materials"
+    },
+    {
+      "name": "Insulating Membrane",
+      "category": "Industrial Materials"
+    },
+    {
+      "name": "Polymers",
+      "category": "Industrial Materials"
+    },
+    {
+      "name": "Semiconductors",
+      "category": "Industrial Materials"
+    },
+    {
+      "name": "Superconductors",
+      "category": "Industrial Materials"
+    },
+    {
+      "name": "Building Fabricators",
+      "category": "Machinery"
+    },
+    {
+      "name": "Crop Harvesters",
+      "category": "Machinery"
+    },
+    {
+      "name": "Emergency Power Cells",
+      "category": "Machinery"
+    },
+    {
+      "name": "Geological Equipment",
+      "category": "Machinery"
+    },
+    {
+      "name": "Microbial Furnaces",
+      "category": "Machinery"
+    },
+    {
+      "name": "Mineral Extractors",
+      "category": "Machinery"
+    },
+    {
+      "name": "Power Generators",
+      "category": "Machinery"
+    },
+    {
+      "name": "Thermal Cooling Units",
+      "category": "Machinery"
+    },
+    {
+      "name": "Water Purifiers",
+      "category": "Machinery"
+    },
+    {
+      "name": "Agri-Medicines",
+      "category": "Medicines"
+    },
+    {
+      "name": "Basic Medicines",
+      "category": "Medicines"
+    },
+    {
+      "name": "Combat Stabilisers",
+      "category": "Medicines"
+    },
+    {
+      "name": "Aluminium",
+      "category": "Metals"
+    },
+    {
+      "name": "Copper",
+      "category": "Metals"
+    },
+    {
+      "name": "Steel",
+      "category": "Metals"
+    },
+    {
+      "name": "Titanium",
+      "category": "Metals"
+    },
+    {
+      "name": "Advanced Catalysers",
+      "category": "Technology"
+    },
+    {
+      "name": "Bioreducing Lichen",
+      "category": "Technology"
+    },
+    {
+      "name": "Computer Components",
+      "category": "Technology"
+    },
+    {
+      "name": "H.E. Suits",
+      "category": "Technology"
+    },
+    {
+      "name": "Land Enrichment Systems",
+      "category": "Technology"
+    },
+    {
+      "name": "Medical Diagnostic Equipment",
+      "category": "Technology"
+    },
+    {
+      "name": "Micro Controllers",
+      "category": "Technology"
+    },
+    {
+      "name": "Muon Imager",
+      "category": "Technology"
+    },
+    {
+      "name": "Resonating Separators",
+      "category": "Technology"
+    },
+    {
+      "name": "Robotics",
+      "category": "Technology"
+    },
+    {
+      "name": "Structural Regulators",
+      "category": "Technology"
+    },
+    {
+      "name": "Military Grade Fabrics",
+      "category": "Textiles"
+    },
+    {
+      "name": "Biowaste",
+      "category": "Waste"
+    },
+    {
+      "name": "Battle Weapons",
+      "category": "Weapons"
+    },
+    {
+      "name": "Non-Lethal Weapons",
+      "category": "Weapons"
+    },
+    {
+      "name": "Reactive Armour",
+      "category": "Weapons"
+    },
+    {
+      "name": "Auto-Fabricators",
+      "category": "Technology"
+    }
+  ],
+  "structures": [
+    {
+      "name": "Orbital - Starport - Coriolis",
+      "costs": {
+        "Liquid Oxygen": 3781,
+        "Water": 1609,
+        "Food Cartridges": 242,
+        "Fruit and Vegetables": 145,
+        "Ceramic Composites": 1207,
+        "CMM Composite": 11261,
+        "Insulating Membrane": 644,
+        "Polymers": 1046,
+        "Semiconductors": 161,
+        "Superconductors": 282,
+        "Power Generators": 65,
+        "Water Purifiers": 105,
+        "Aluminium": 10055,
+        "Copper": 644,
+        "Steel": 14076,
+        "Titanium": 8205,
+        "Computer Components": 145,
+        "Medical Diagnostic Equipment": 25,
+        "Non-Lethal Weapons": 25
+      }
+    },
+    {
+      "name": "Orbital - Starport - Coriolis (Primary)",
+      "costs": {
+        "Liquid Oxygen": 4976,
+        "Water": 2209,
+        "Food Cartridges": 242,
+        "Fruit and Vegetables": 145,
+        "Ceramic Composites": 1327,
+        "CMM Composite": 14241,
+        "Insulating Membrane": 824,
+        "Polymers": 1166,
+        "Semiconductors": 221,
+        "Superconductors": 342,
+        "Power Generators": 65,
+        "Water Purifiers": 105,
+        "Aluminium": 12555,
+        "Copper": 764,
+        "Steel": 19436,
+        "Titanium": 11660,
+        "Computer Components": 205,
+        "Medical Diagnostic Equipment": 25,
+        "Non-Lethal Weapons": 25
+      }
+    },
+    {
+      "name": "Orbital - Starport - Asteroid Base (Primary)",
+      "costs": {
+        "Liquid Oxygen": 4976,
+        "Water": 2209,
+        "Food Cartridges": 242,
+        "Fruit and Vegetables": 145,
+        "Ceramic Composites": 1327,
+        "CMM Composite": 14241,
+        "Insulating Membrane": 824,
+        "Polymers": 1166,
+        "Semiconductors": 221,
+        "Superconductors": 342,
+        "Power Generators": 65,
+        "Water Purifiers": 105,
+        "Aluminium": 12555,
+        "Copper": 764,
+        "Steel": 19436,
+        "Titanium": 11660,
+        "Computer Components": 205,
+        "Medical Diagnostic Equipment": 25,
+        "Non-Lethal Weapons": 25
+      }
+    },
+    {
+      "name": "Orbital - Starport - Ocellus (Primary)",
+      "costs": {
+        "Liquid Oxygen": 17514,
+        "Water": 7636,
+        "Food Cartridges": 484,
+        "Fruit and Vegetables": 290,
+        "Ceramic Composites": 5068,
+        "CMM Composite": 51004,
+        "Insulating Membrane": 1648,
+        "Polymers": 2332,
+        "Semiconductors": 442,
+        "Superconductors": 684,
+        "Power Generators": 130,
+        "Water Purifiers": 210,
+        "Aluminium": 45220,
+        "Copper": 2816,
+        "Steel": 67024,
+        "Titanium": 39730,
+        "Computer Components": 410,
+        "Medical Diagnostic Equipment": 50,
+        "Non-Lethal Weapons": 50
+      }
+    },
+    {
+      "name": "Orbital - Starport - Orbis (Primary)",
+      "costs": {
+        "Liquid Oxygen": 17514,
+        "Water": 7636,
+        "Food Cartridges": 484,
+        "Fruit and Vegetables": 290,
+        "Ceramic Composites": 5068,
+        "CMM Composite": 51004,
+        "Insulating Membrane": 1648,
+        "Polymers": 2332,
+        "Semiconductors": 442,
+        "Superconductors": 684,
+        "Power Generators": 130,
+        "Water Purifiers": 210,
+        "Aluminium": 45220,
+        "Copper": 2816,
+        "Steel": 67024,
+        "Titanium": 39730,
+        "Computer Components": 410,
+        "Medical Diagnostic Equipment": 50,
+        "Non-Lethal Weapons": 50
+      }
+    },
+    {
+      "name": "Orbital - Starport - Dodecahedron (Primary)",
+      "costs": {
+        "Liquid Oxygen": 19405,
+        "Water": 8441,
+        "Food Cartridges": 605,
+        "Fruit and Vegetables": 363,
+        "Ceramic Composites": 5672,
+        "CMM Composite": 56635,
+        "Insulating Membrane": 1970,
+        "Polymers": 2855,
+        "Semiconductors": 523,
+        "Superconductors": 825,
+        "Power Generators": 163,
+        "Water Purifiers": 263,
+        "Aluminium": 50248,
+        "Copper": 3138,
+        "Steel": 74062,
+        "Titanium": 43833,
+        "Auto-Fabricators": 314,
+        "Computer Components": 483,
+        "Medical Diagnostic Equipment": 63,
+        "Non-Lethal Weapons": 63
+      }
+    },
+    {
+      "name": "Orbital - Outpost - Commercial (Primary)",
+      "costs": {
+        "Liquid Oxygen": 1792,
+        "Water": 741,
+        "Food Cartridges": 94,
+        "Fruit and Vegetables": 50,
+        "Ceramic Composites": 521,
+        "CMM Composite": 4508,
+        "Insulating Membrane": 347,
+        "Polymers": 521,
+        "Semiconductors": 68,
+        "Superconductors": 112,
+        "Power Generators": 19,
+        "Water Purifiers": 38,
+        "Aluminium": 500,
+        "Copper": 242,
+        "Steel": 6660,
+        "Titanium": 5534,
+        "Computer Components": 62,
+        "Medical Diagnostic Equipment": 13,
+        "Non-Lethal Weapons": 13
+      }
+    },
+    {
+      "name": "Orbital - Outpost - Industrial (Primary)",
+      "costs": {
+        "Liquid Oxygen": 1792,
+        "Water": 741,
+        "Food Cartridges": 94,
+        "Fruit and Vegetables": 50,
+        "Ceramic Composites": 521,
+        "CMM Composite": 4508,
+        "Insulating Membrane": 347,
+        "Polymers": 521,
+        "Semiconductors": 68,
+        "Superconductors": 112,
+        "Power Generators": 19,
+        "Water Purifiers": 38,
+        "Aluminium": 500,
+        "Copper": 242,
+        "Steel": 6660,
+        "Titanium": 5534,
+        "Computer Components": 62,
+        "Medical Diagnostic Equipment": 13,
+        "Non-Lethal Weapons": 13
+      }
+    },
+    {
+      "name": "Orbital - Outpost - Criminal (Primary)",
+      "costs": {
+        "Liquid Oxygen": 1792,
+        "Water": 741,
+        "Food Cartridges": 94,
+        "Fruit and Vegetables": 50,
+        "Ceramic Composites": 521,
+        "CMM Composite": 4508,
+        "Insulating Membrane": 347,
+        "Polymers": 521,
+        "Semiconductors": 68,
+        "Superconductors": 112,
+        "Power Generators": 19,
+        "Water Purifiers": 38,
+        "Aluminium": 500,
+        "Copper": 242,
+        "Steel": 6660,
+        "Titanium": 5534,
+        "Computer Components": 62,
+        "Medical Diagnostic Equipment": 13,
+        "Non-Lethal Weapons": 13
+      }
+    },
+    {
+      "name": "Orbital - Outpost - Civilian (Primary)",
+      "costs": {
+        "Liquid Oxygen": 1792,
+        "Water": 741,
+        "Food Cartridges": 94,
+        "Fruit and Vegetables": 50,
+        "Ceramic Composites": 521,
+        "CMM Composite": 4508,
+        "Insulating Membrane": 347,
+        "Polymers": 521,
+        "Semiconductors": 68,
+        "Superconductors": 112,
+        "Power Generators": 19,
+        "Water Purifiers": 38,
+        "Aluminium": 500,
+        "Copper": 242,
+        "Steel": 6660,
+        "Titanium": 5534,
+        "Computer Components": 62,
+        "Medical Diagnostic Equipment": 13,
+        "Non-Lethal Weapons": 13
+      }
+    },
+    {
+      "name": "Orbital - Outpost - Scientific (Primary)",
+      "costs": {
+        "Liquid Oxygen": 1792,
+        "Water": 741,
+        "Food Cartridges": 94,
+        "Fruit and Vegetables": 50,
+        "Ceramic Composites": 521,
+        "CMM Composite": 4508,
+        "Insulating Membrane": 347,
+        "Polymers": 521,
+        "Semiconductors": 68,
+        "Superconductors": 112,
+        "Power Generators": 19,
+        "Water Purifiers": 38,
+        "Aluminium": 500,
+        "Copper": 242,
+        "Steel": 6660,
+        "Titanium": 5534,
+        "Computer Components": 62,
+        "Medical Diagnostic Equipment": 13,
+        "Non-Lethal Weapons": 13
+      }
+    },
+    {
+      "name": "Orbital - Outpost - Military (Primary)",
+      "costs": {
+        "Liquid Oxygen": 1792,
+        "Water": 741,
+        "Food Cartridges": 94,
+        "Fruit and Vegetables": 50,
+        "Ceramic Composites": 521,
+        "CMM Composite": 4508,
+        "Insulating Membrane": 347,
+        "Polymers": 521,
+        "Semiconductors": 68,
+        "Superconductors": 112,
+        "Power Generators": 19,
+        "Water Purifiers": 38,
+        "Aluminium": 500,
+        "Copper": 242,
+        "Steel": 6660,
+        "Titanium": 5534,
+        "Computer Components": 62,
+        "Medical Diagnostic Equipment": 13,
+        "Non-Lethal Weapons": 13
+      }
+    },
+    {
+      "name": "Orbital - Starport - Asteroid Base",
+      "costs": {
+        "Liquid Oxygen": 3781,
+        "Water": 1609,
+        "Food Cartridges": 242,
+        "Fruit and Vegetables": 145,
+        "Ceramic Composites": 1207,
+        "CMM Composite": 11261,
+        "Insulating Membrane": 644,
+        "Polymers": 1046,
+        "Semiconductors": 161,
+        "Superconductors": 282,
+        "Power Generators": 65,
+        "Water Purifiers": 105,
+        "Aluminium": 10055,
+        "Copper": 644,
+        "Steel": 14076,
+        "Titanium": 8205,
+        "Computer Components": 145,
+        "Medical Diagnostic Equipment": 25,
+        "Non-Lethal Weapons": 25
+      }
+    },
+    {
+      "name": "Orbital - Starport - Ocellus",
+      "costs": {
+        "Liquid Oxygen": 15124,
+        "Water": 6436,
+        "Food Cartridges": 484,
+        "Fruit and Vegetables": 290,
+        "Ceramic Composites": 4828,
+        "CMM Composite": 45044,
+        "Insulating Membrane": 1288,
+        "Polymers": 2092,
+        "Semiconductors": 322,
+        "Superconductors": 564,
+        "Power Generators": 130,
+        "Water Purifiers": 210,
+        "Aluminium": 40220,
+        "Copper": 2576,
+        "Steel": 56304,
+        "Titanium": 32820,
+        "Computer Components": 290,
+        "Medical Diagnostic Equipment": 50,
+        "Non-Lethal Weapons": 50
+      }
+    },
+    {
+      "name": "Orbital - Starport - Orbis",
+      "costs": {
+        "Liquid Oxygen": 15124,
+        "Water": 6436,
+        "Food Cartridges": 484,
+        "Fruit and Vegetables": 290,
+        "Ceramic Composites": 4828,
+        "CMM Composite": 45044,
+        "Insulating Membrane": 1288,
+        "Polymers": 2092,
+        "Semiconductors": 322,
+        "Superconductors": 564,
+        "Power Generators": 130,
+        "Water Purifiers": 210,
+        "Aluminium": 40220,
+        "Copper": 2576,
+        "Steel": 56304,
+        "Titanium": 32820,
+        "Computer Components": 290,
+        "Medical Diagnostic Equipment": 50,
+        "Non-Lethal Weapons": 50
+      }
+    },
+    {
+      "name": "Orbital - Starport - Dodecahedron",
+      "costs": {
+        "Liquid Oxygen": 17015,
+        "Water": 7241,
+        "Food Cartridges": 605,
+        "Fruit and Vegetables": 363,
+        "Ceramic Composites": 5432,
+        "CMM Composite": 50675,
+        "Insulating Membrane": 1610,
+        "Polymers": 2615,
+        "Semiconductors": 403,
+        "Superconductors": 705,
+        "Power Generators": 163,
+        "Water Purifiers": 263,
+        "Aluminium": 45248,
+        "Copper": 2898,
+        "Steel": 63342,
+        "Titanium": 36923,
+        "Computer Components": 363,
+        "Medical Diagnostic Equipment": 63,
+        "Non-Lethal Weapons": 63,
+        "Auto-Fabricators": 314
+      }
+    },
+    {
+      "name": "Orbital - Outpost - Commercial",
+      "costs": {
+        "Liquid Oxygen": 1553,
+        "Water": 621,
+        "Food Cartridges": 94,
+        "Fruit and Vegetables": 50,
+        "Ceramic Composites": 497,
+        "CMM Composite": 3912,
+        "Insulating Membrane": 311,
+        "Polymers": 497,
+        "Semiconductors": 56,
+        "Superconductors": 100,
+        "Power Generators": 19,
+        "Water Purifiers": 38,
+        "Aluminium": 515,
+        "Copper": 218,
+        "Steel": 5588,
+        "Titanium": 4843,
+        "Computer Components": 50,
+        "Medical Diagnostic Equipment": 13,
+        "Non-Lethal Weapons": 13
+      }
+    },
+    {
+      "name": "Orbital - Outpost - Industrial",
+      "costs": {
+        "Liquid Oxygen": 1553,
+        "Water": 621,
+        "Food Cartridges": 94,
+        "Fruit and Vegetables": 50,
+        "Ceramic Composites": 497,
+        "CMM Composite": 3912,
+        "Insulating Membrane": 311,
+        "Polymers": 497,
+        "Semiconductors": 56,
+        "Superconductors": 100,
+        "Power Generators": 19,
+        "Water Purifiers": 38,
+        "Aluminium": 515,
+        "Copper": 217,
+        "Steel": 5588,
+        "Titanium": 4843,
+        "Computer Components": 50,
+        "Medical Diagnostic Equipment": 13,
+        "Non-Lethal Weapons": 13
+      }
+    },
+    {
+      "name": "Orbital - Outpost - Criminal",
+      "costs": {
+        "Liquid Oxygen": 1553,
+        "Water": 621,
+        "Food Cartridges": 94,
+        "Fruit and Vegetables": 50,
+        "Ceramic Composites": 497,
+        "CMM Composite": 3912,
+        "Insulating Membrane": 311,
+        "Polymers": 497,
+        "Semiconductors": 56,
+        "Superconductors": 100,
+        "Power Generators": 19,
+        "Water Purifiers": 38,
+        "Aluminium": 515,
+        "Copper": 218,
+        "Steel": 5588,
+        "Titanium": 4843,
+        "Computer Components": 50,
+        "Medical Diagnostic Equipment": 13,
+        "Non-Lethal Weapons": 13
+      }
+    },
+    {
+      "name": "Orbital - Outpost - Civilian",
+      "costs": {
+        "Liquid Oxygen": 1553,
+        "Water": 621,
+        "Food Cartridges": 94,
+        "Fruit and Vegetables": 50,
+        "Ceramic Composites": 497,
+        "CMM Composite": 3912,
+        "Insulating Membrane": 311,
+        "Polymers": 497,
+        "Semiconductors": 56,
+        "Superconductors": 100,
+        "Power Generators": 19,
+        "Water Purifiers": 38,
+        "Aluminium": 515,
+        "Copper": 218,
+        "Steel": 5588,
+        "Titanium": 4843,
+        "Computer Components": 50,
+        "Medical Diagnostic Equipment": 13,
+        "Non-Lethal Weapons": 13
+      }
+    },
+    {
+      "name": "Orbital - Outpost - Scientific",
+      "costs": {
+        "Liquid Oxygen": 1553,
+        "Water": 621,
+        "Food Cartridges": 94,
+        "Fruit and Vegetables": 50,
+        "Ceramic Composites": 497,
+        "CMM Composite": 3912,
+        "Insulating Membrane": 311,
+        "Polymers": 497,
+        "Semiconductors": 56,
+        "Superconductors": 100,
+        "Power Generators": 19,
+        "Water Purifiers": 38,
+        "Aluminium": 515,
+        "Copper": 218,
+        "Steel": 5588,
+        "Titanium": 4843,
+        "Computer Components": 50,
+        "Medical Diagnostic Equipment": 13,
+        "Non-Lethal Weapons": 13
+      }
+    },
+    {
+      "name": "Orbital - Outpost - Military",
+      "costs": {
+        "Liquid Oxygen": 1553,
+        "Water": 621,
+        "Food Cartridges": 94,
+        "Fruit and Vegetables": 50,
+        "Ceramic Composites": 497,
+        "CMM Composite": 3912,
+        "Insulating Membrane": 311,
+        "Polymers": 497,
+        "Semiconductors": 56,
+        "Superconductors": 100,
+        "Power Generators": 19,
+        "Water Purifiers": 38,
+        "Aluminium": 515,
+        "Copper": 218,
+        "Steel": 5588,
+        "Titanium": 4843,
+        "Computer Components": 50,
+        "Medical Diagnostic Equipment": 13,
+        "Non-Lethal Weapons": 13
+      }
+    },
+    {
+      "name": "Orbital - Installation - Satellite",
+      "costs": {
+        "Liquid Oxygen": 678,
+        "Water": 22,
+        "Food Cartridges": 26,
+        "Fruit and Vegetables": 9,
+        "Ceramic Composites": 85,
+        "Insulating Membrane": 106,
+        "Polymers": 170,
+        "Semiconductors": 34,
+        "Superconductors": 60,
+        "Power Generators": 9,
+        "Water Purifiers": 13,
+        "Aluminium": 1322,
+        "Copper": 85,
+        "Steel": 2542,
+        "Titanium": 1525,
+        "Computer Components": 22,
+        "Micro Controllers": 13
+      }
+    },
+    {
+      "name": "Orbital - Installation - Comm Station",
+      "costs": {
+        "Liquid Oxygen": 678,
+        "Water": 22,
+        "Food Cartridges": 26,
+        "Fruit and Vegetables": 9,
+        "Ceramic Composites": 85,
+        "Insulating Membrane": 106,
+        "Polymers": 170,
+        "Semiconductors": 34,
+        "Superconductors": 60,
+        "Power Generators": 9,
+        "Water Purifiers": 13,
+        "Aluminium": 1322,
+        "Copper": 85,
+        "Steel": 2542,
+        "Titanium": 1525,
+        "Computer Components": 22,
+        "Micro Controllers": 13
+      }
+    },
+    {
+      "name": "Orbital - Installation - Space Farm",
+      "costs": {
+        "Liquid Oxygen": 1071,
+        "Pesticides": 123,
+        "Water": 173,
+        "Food Cartridges": 46,
+        "Fruit and Vegetables": 69,
+        "Grain": 92,
+        "Ceramic Composites": 77,
+        "Insulating Membrane": 192,
+        "Polymers": 230,
+        "Crop Harvesters": 77,
+        "Power Generators": 8,
+        "Water Purifiers": 31,
+        "Agri-Medicines": 115,
+        "Aluminium": 842,
+        "Copper": 46,
+        "Steel": 1912,
+        "Titanium": 1453,
+        "Computer Components": 12,
+        "Biowaste": 153
+      }
+    },
+    {
+      "name": "Orbital - Installation - Pirate Base",
+      "costs": {
+        "Liquid Oxygen": 911,
+        "Water": 65,
+        "Beer": 380,
+        "Liquor": 228,
+        "Food Cartridges": 61,
+        "Fruit and Vegetables": 16,
+        "Ceramic Composites": 95,
+        "Insulating Membrane": 95,
+        "Polymers": 190,
+        "Power Generators": 8,
+        "Water Purifiers": 16,
+        "Aluminium": 1233,
+        "Copper": 57,
+        "Steel": 1707,
+        "Titanium": 1594,
+        "Computer Components": 19,
+        "Battle Weapons": 23,
+        "Reactive Armour": 23
+      }
+    },
+    {
+      "name": "Orbital - Installation - Mining Outpost",
+      "costs": {
+        "Liquid Oxygen": 1028,
+        "Water": 73,
+        "Food Cartridges": 52,
+        "Fruit and Vegetables": 18,
+        "Ceramic Composites": 86,
+        "Insulating Membrane": 129,
+        "Polymers": 215,
+        "Geological Equipment": 26,
+        "Power Generators": 9,
+        "Water Purifiers": 22,
+        "Aluminium": 921,
+        "Copper": 52,
+        "Steel": 2141,
+        "Titanium": 1628,
+        "Bioreducing Lichen": 172,
+        "Computer Components": 13,
+        "H.E. Suits": 13,
+        "Muon Imager": 43,
+        "Resonating Separators": 22,
+        "Robotics": 60
+      }
+    },
+    {
+      "name": "Orbital - Installation - Relay Station",
+      "costs": {
+        "Liquid Oxygen": 780,
+        "Water": 25,
+        "Food Cartridges": 30,
+        "Fruit and Vegetables": 10,
+        "Ceramic Composites": 98,
+        "Insulating Membrane": 122,
+        "Polymers": 195,
+        "Semiconductors": 39,
+        "Superconductors": 59,
+        "Power Generators": 10,
+        "Water Purifiers": 15,
+        "Aluminium": 1033,
+        "Copper": 88,
+        "Steel": 2437,
+        "Titanium": 1755,
+        "Computer Components": 25
+      }
+    },
+    {
+      "name": "Orbital - Installation - Military",
+      "costs": {
+        "Liquid Oxygen": 1424,
+        "Water": 238,
+        "Food Cartridges": 107,
+        "Fruit and Vegetables": 48,
+        "Ceramic Composites": 238,
+        "CMM Composite": 356,
+        "Insulating Membrane": 178,
+        "Polymers": 416,
+        "Power Generators": 18,
+        "Water Purifiers": 42,
+        "Basic Medicines": 24,
+        "Combat Stabilisers": 48,
+        "Aluminium": 1317,
+        "Copper": 131,
+        "Steel": 2966,
+        "Titanium": 2373,
+        "Computer Components": 42,
+        "Micro Controllers": 18,
+        "Military Grade Fabrics": 36,
+        "Battle Weapons": 30,
+        "Reactive Armour": 30
+      }
+    },
+    {
+      "name": "Orbital - Installation - Security Station",
+      "costs": {
+        "Liquid Oxygen": 1458,
+        "Water": 31,
+        "Food Cartridges": 37,
+        "Fruit and Vegetables": 13,
+        "Ceramic Composites": 122,
+        "Insulating Membrane": 183,
+        "Polymers": 243,
+        "Power Generators": 13,
+        "Water Purifiers": 19,
+        "Combat Stabilisers": 25,
+        "Aluminium": 1774,
+        "Copper": 122,
+        "Steel": 3645,
+        "Titanium": 2309,
+        "Computer Components": 31,
+        "Military Grade Fabrics": 19,
+        "Battle Weapons": 19,
+        "Non-Lethal Weapons": 19
+      }
+    },
+    {
+      "name": "Orbital - Installation - Government",
+      "costs": {
+        "Liquid Oxygen": 1479,
+        "Water": 154,
+        "Food Cartridges": 93,
+        "Fruit and Vegetables": 37,
+        "Ceramic Composites": 154,
+        "Insulating Membrane": 247,
+        "Polymers": 370,
+        "Power Generators": 13,
+        "Water Purifiers": 31,
+        "Aluminium": 1959,
+        "Copper": 93,
+        "Steel": 3080,
+        "Titanium": 2341,
+        "Computer Components": 13,
+        "Non-Lethal Weapons": 13
+      }
+    },
+    {
+      "name": "Orbital - Installation - Medical",
+      "costs": {
+        "Liquid Oxygen": 1727,
+        "Water": 278,
+        "Food Cartridges": 75,
+        "Fruit and Vegetables": 50,
+        "Ceramic Composites": 155,
+        "Insulating Membrane": 309,
+        "Polymers": 371,
+        "Power Generators": 19,
+        "Water Purifiers": 38,
+        "Basic Medicines": 50,
+        "Combat Stabilisers": 19,
+        "Aluminium": 1357,
+        "Copper": 112,
+        "Steel": 3084,
+        "Titanium": 2282,
+        "Computer Components": 31,
+        "H.E. Suits": 25,
+        "Medical Diagnostic Equipment": 99
+      }
+    },
+    {
+      "name": "Orbital - Installation - Research Station",
+      "costs": {
+        "Liquid Oxygen": 1506,
+        "Water": 157,
+        "Food Cartridges": 76,
+        "Fruit and Vegetables": 26,
+        "Ceramic Composites": 157,
+        "Insulating Membrane": 314,
+        "Polymers": 377,
+        "Semiconductors": 51,
+        "Superconductors": 88,
+        "Geological Equipment": 26,
+        "Power Generators": 13,
+        "Water Purifiers": 38,
+        "Basic Medicines": 13,
+        "Aluminium": 1380,
+        "Copper": 126,
+        "Steel": 3136,
+        "Titanium": 2383,
+        "Advanced Catalysers": 44,
+        "Computer Components": 38,
+        "H.E. Suits": 32,
+        "Medical Diagnostic Equipment": 51,
+        "Micro Controllers": 13,
+        "Muon Imager": 38
+      }
+    },
+    {
+      "name": "Orbital - Installation - Tourist",
+      "costs": {
+        "Liquid Oxygen": 1813,
+        "Water": 324,
+        "Beer": 389,
+        "Liquor": 195,
+        "Wine": 259,
+        "Animal Meat": 78,
+        "Coffee": 130,
+        "Fish": 39,
+        "Fruit and Vegetables": 65,
+        "Tea": 259,
+        "Ceramic Composites": 130,
+        "Insulating Membrane": 259,
+        "Polymers": 324,
+        "Power Generators": 13,
+        "Water Purifiers": 39,
+        "Aluminium": 1269,
+        "Copper": 78,
+        "Steel": 2598,
+        "Titanium": 1813,
+        "Computer Components": 13
+      }
+    },
+    {
+      "name": "Orbital - Installation - Space Bar",
+      "costs": {
+        "Liquid Oxygen": 1738,
+        "Water": 311,
+        "Beer": 497,
+        "Liquor": 311,
+        "Wine": 621,
+        "Animal Meat": 38,
+        "Coffee": 63,
+        "Fish": 19,
+        "Fruit and Vegetables": 38,
+        "Tea": 178,
+        "Ceramic Composites": 125,
+        "Insulating Membrane": 249,
+        "Polymers": 311,
+        "Power Generators": 13,
+        "Water Purifiers": 38,
+        "Aluminium": 1217,
+        "Copper": 75,
+        "Steel": 2483,
+        "Titanium": 1738,
+        "Computer Components": 13
+      }
+    },
+    {
+      "name": "Surface - Planetary Port - Outpost Civilian",
+      "costs": {
+        "Liquid Oxygen": 2372,
+        "Surface Stabilisers": 610,
+        "Evacuation Shelter": 204,
+        "Survival Equipment": 55,
+        "Food Cartridges": 136,
+        "Fruit and Vegetables": 95,
+        "Ceramic Composites": 814,
+        "CMM Composite": 6776,
+        "Polymers": 678,
+        "Semiconductors": 102,
+        "Superconductors": 136,
+        "Building Fabricators": 407,
+        "Emergency Power Cells": 68,
+        "Power Generators": 68,
+        "Aluminium": 7047,
+        "Copper": 407,
+        "Steel": 10164,
+        "Titanium": 5760,
+        "Computer Components": 102,
+        "Land Enrichment Systems": 68,
+        "Medical Diagnostic Equipment": 48,
+        "Structural Regulators": 678,
+        "Non-Lethal Weapons": 34
+      }
+    },
+    {
+      "name": "Surface - Planetary Port - Outpost Industrial",
+      "costs": {
+        "Liquid Oxygen": 2372,
+        "Surface Stabilisers": 610,
+        "Evacuation Shelter": 204,
+        "Survival Equipment": 55,
+        "Food Cartridges": 136,
+        "Fruit and Vegetables": 95,
+        "Ceramic Composites": 814,
+        "CMM Composite": 6776,
+        "Polymers": 678,
+        "Semiconductors": 102,
+        "Superconductors": 136,
+        "Building Fabricators": 407,
+        "Emergency Power Cells": 68,
+        "Power Generators": 68,
+        "Aluminium": 7047,
+        "Copper": 407,
+        "Steel": 10164,
+        "Titanium": 5760,
+        "Computer Components": 102,
+        "Land Enrichment Systems": 68,
+        "Medical Diagnostic Equipment": 48,
+        "Structural Regulators": 678,
+        "Non-Lethal Weapons": 34
+      }
+    },
+    {
+      "name": "Surface - Planetary Port - Outpost Scientific",
+      "costs": {
+        "Liquid Oxygen": 2372,
+        "Surface Stabilisers": 610,
+        "Evacuation Shelter": 204,
+        "Survival Equipment": 55,
+        "Food Cartridges": 136,
+        "Fruit and Vegetables": 95,
+        "Ceramic Composites": 814,
+        "CMM Composite": 6776,
+        "Polymers": 678,
+        "Semiconductors": 102,
+        "Superconductors": 136,
+        "Building Fabricators": 407,
+        "Emergency Power Cells": 68,
+        "Power Generators": 68,
+        "Aluminium": 7047,
+        "Copper": 407,
+        "Steel": 10164,
+        "Titanium": 5760,
+        "Computer Components": 102,
+        "Land Enrichment Systems": 68,
+        "Medical Diagnostic Equipment": 48,
+        "Structural Regulators": 678,
+        "Non-Lethal Weapons": 34
+      }
+    },
+    {
+      "name": "Surface - Planetary Port - Port",
+      "costs": {
+        "Liquid Oxygen": 14232,
+        "Surface Stabilisers": 3660,
+        "Evacuation Shelter": 816,
+        "Survival Equipment": 220,
+        "Food Cartridges": 544,
+        "Fruit and Vegetables": 380,
+        "Ceramic Composites": 4884,
+        "CMM Composite": 40656,
+        "Polymers": 2712,
+        "Semiconductors": 408,
+        "Superconductors": 544,
+        "Building Fabricators": 2442,
+        "Emergency Power Cells": 272,
+        "Power Generators": 272,
+        "Aluminium": 42282,
+        "Copper": 2442,
+        "Steel": 60984,
+        "Titanium": 34560,
+        "Computer Components": 408,
+        "Land Enrichment Systems": 272,
+        "Medical Diagnostic Equipment": 192,
+        "Structural Regulators": 2712,
+        "Non-Lethal Weapons": 136
+      }
+    },
+    {
+      "name": "Surface - Settlement - Agriculture T1 S",
+      "costs": {
+        "Liquid Oxygen": 224,
+        "Pesticides": 126,
+        "Surface Stabilisers": 56,
+        "Evacuation Shelter": 14,
+        "Survival Equipment": 14,
+        "Food Cartridges": 42,
+        "Fruit and Vegetables": 63,
+        "Grain": 77,
+        "Ceramic Composites": 28,
+        "Polymers": 91,
+        "Building Fabricators": 42,
+        "Crop Harvesters": 210,
+        "Emergency Power Cells": 84,
+        "Aluminium": 559,
+        "Copper": 21,
+        "Steel": 768,
+        "Computer Components": 14,
+        "Land Enrichment Systems": 70,
+        "Structural Regulators": 56,
+        "Biowaste": 280
+      }
+    },
+    {
+      "name": "Surface - Settlement - Agriculture T1 M",
+      "costs": {
+        "Liquid Oxygen": 448,
+        "Pesticides": 252,
+        "Surface Stabilisers": 112,
+        "Evacuation Shelter": 28,
+        "Survival Equipment": 28,
+        "Food Cartridges": 84,
+        "Fruit and Vegetables": 126,
+        "Grain": 154,
+        "Ceramic Composites": 56,
+        "Polymers": 182,
+        "Building Fabricators": 84,
+        "Crop Harvesters": 420,
+        "Emergency Power Cells": 168,
+        "Aluminium": 1118,
+        "Copper": 42,
+        "Steel": 1536,
+        "Computer Components": 28,
+        "Land Enrichment Systems": 140,
+        "Structural Regulators": 112,
+        "Biowaste": 560
+      }
+    },
+    {
+      "name": "Surface - Settlement - Agriculture T2 L",
+      "costs": {
+        "Liquid Oxygen": 672,
+        "Pesticides": 378,
+        "Surface Stabilisers": 168,
+        "Evacuation Shelter": 42,
+        "Survival Equipment": 42,
+        "Food Cartridges": 126,
+        "Fruit and Vegetables": 189,
+        "Grain": 231,
+        "Ceramic Composites": 84,
+        "Polymers": 273,
+        "Building Fabricators": 126,
+        "Crop Harvesters": 630,
+        "Emergency Power Cells": 252,
+        "Aluminium": 1677,
+        "Copper": 63,
+        "Steel": 2304,
+        "Computer Components": 42,
+        "Land Enrichment Systems": 210,
+        "Structural Regulators": 168,
+        "Biowaste": 840
+      }
+    },
+    {
+      "name": "Surface - Settlement - Extraction T1 S",
+      "costs": {
+        "Liquid Oxygen": 177,
+        "Surface Stabilisers": 89,
+        "Evacuation Shelter": 30,
+        "Survival Equipment": 15,
+        "Food Cartridges": 45,
+        "Fruit and Vegetables": 30,
+        "Ceramic Composites": 59,
+        "Polymers": 118,
+        "Building Fabricators": 59,
+        "Emergency Power Cells": 96,
+        "Geological Equipment": 52,
+        "Aluminium": 632,
+        "Copper": 30,
+        "Steel": 1028,
+        "Bioreducing Lichen": 162,
+        "Computer Components": 30,
+        "H.E. Suits": 15,
+        "Muon Imager": 45,
+        "Robotics": 59,
+        "Structural Regulators": 74
+      }
+    },
+    {
+      "name": "Surface - Settlement - Extraction T1 M",
+      "costs": {
+        "Liquid Oxygen": 354,
+        "Surface Stabilisers": 178,
+        "Evacuation Shelter": 60,
+        "Survival Equipment": 30,
+        "Food Cartridges": 90,
+        "Fruit and Vegetables": 60,
+        "Ceramic Composites": 118,
+        "Polymers": 236,
+        "Building Fabricators": 118,
+        "Emergency Power Cells": 192,
+        "Geological Equipment": 104,
+        "Aluminium": 1264,
+        "Copper": 60,
+        "Steel": 2056,
+        "Bioreducing Lichen": 324,
+        "Computer Components": 60,
+        "H.E. Suits": 30,
+        "Muon Imager": 90,
+        "Robotics": 118,
+        "Structural Regulators": 148
+      }
+    },
+    {
+      "name": "Surface - Settlement - Extraction T2 L",
+      "costs": {
+        "Liquid Oxygen": 531,
+        "Surface Stabilisers": 267,
+        "Evacuation Shelter": 90,
+        "Survival Equipment": 45,
+        "Food Cartridges": 135,
+        "Fruit and Vegetables": 90,
+        "Ceramic Composites": 177,
+        "Polymers": 354,
+        "Building Fabricators": 177,
+        "Emergency Power Cells": 288,
+        "Geological Equipment": 156,
+        "Aluminium": 1896,
+        "Copper": 90,
+        "Steel": 3084,
+        "Bioreducing Lichen": 486,
+        "Computer Components": 90,
+        "H.E. Suits": 45,
+        "Muon Imager": 135,
+        "Robotics": 177,
+        "Structural Regulators": 222
+      }
+    },
+    {
+      "name": "Surface - Settlement - Industrial T1 S",
+      "costs": {
+        "Liquid Oxygen": 272,
+        "Surface Stabilisers": 68,
+        "Evacuation Shelter": 21,
+        "Survival Equipment": 14,
+        "Food Cartridges": 41,
+        "Fruit and Vegetables": 28,
+        "Ceramic Composites": 55,
+        "Polymers": 109,
+        "Semiconductors": 14,
+        "Superconductors": 14,
+        "Building Fabricators": 55,
+        "Emergency Power Cells": 28,
+        "Microbial Furnaces": 82,
+        "Mineral Extractors": 164,
+        "Thermal Cooling Units": 14,
+        "Aluminium": 585,
+        "Copper": 28,
+        "Steel": 1019,
+        "Advanced Catalysers": 41,
+        "Computer Components": 28,
+        "H.E. Suits": 14,
+        "Micro Controllers": 14,
+        "Resonating Separators": 14,
+        "Robotics": 55,
+        "Structural Regulators": 68
+      }
+    },
+    {
+      "name": "Surface - Settlement - Industrial T1 M",
+      "costs": {
+        "Liquid Oxygen": 544,
+        "Surface Stabilisers": 136,
+        "Evacuation Shelter": 42,
+        "Survival Equipment": 28,
+        "Food Cartridges": 82,
+        "Fruit and Vegetables": 56,
+        "Ceramic Composites": 110,
+        "Polymers": 218,
+        "Semiconductors": 28,
+        "Superconductors": 28,
+        "Building Fabricators": 110,
+        "Emergency Power Cells": 56,
+        "Microbial Furnaces": 164,
+        "Mineral Extractors": 328,
+        "Thermal Cooling Units": 28,
+        "Aluminium": 1170,
+        "Copper": 56,
+        "Steel": 2038,
+        "Advanced Catalysers": 82,
+        "Computer Components": 56,
+        "H.E. Suits": 28,
+        "Micro Controllers": 28,
+        "Resonating Separators": 28,
+        "Robotics": 110,
+        "Structural Regulators": 136
+      }
+    },
+    {
+      "name": "Surface - Settlement - Industrial T2 L",
+      "costs": {
+        "Liquid Oxygen": 816,
+        "Surface Stabilisers": 204,
+        "Evacuation Shelter": 63,
+        "Survival Equipment": 42,
+        "Food Cartridges": 123,
+        "Fruit and Vegetables": 84,
+        "Ceramic Composites": 165,
+        "Polymers": 327,
+        "Semiconductors": 42,
+        "Superconductors": 42,
+        "Building Fabricators": 165,
+        "Emergency Power Cells": 84,
+        "Microbial Furnaces": 246,
+        "Mineral Extractors": 492,
+        "Thermal Cooling Units": 42,
+        "Aluminium": 1755,
+        "Copper": 84,
+        "Steel": 3057,
+        "Advanced Catalysers": 123,
+        "Computer Components": 84,
+        "H.E. Suits": 42,
+        "Micro Controllers": 42,
+        "Resonating Separators": 42,
+        "Robotics": 165,
+        "Structural Regulators": 204
+      }
+    },
+    {
+      "name": "Surface - Settlement - Military T1 S",
+      "costs": {
+        "Liquid Oxygen": 172,
+        "Surface Stabilisers": 60,
+        "Evacuation Shelter": 36,
+        "Survival Equipment": 24,
+        "Food Cartridges": 36,
+        "Fruit and Vegetables": 24,
+        "Ceramic Composites": 60,
+        "CMM Composite": 356,
+        "Polymers": 119,
+        "Building Fabricators": 60,
+        "Emergency Power Cells": 24,
+        "Basic Medicines": 36,
+        "Combat Stabilisers": 36,
+        "Aluminium": 593,
+        "Copper": 30,
+        "Steel": 949,
+        "Computer Components": 42,
+        "Micro Controllers": 12,
+        "Structural Regulators": 101,
+        "Military Grade Fabrics": 24,
+        "Battle Weapons": 24,
+        "Reactive Armour": 24
+      }
+    },
+    {
+      "name": "Surface - Settlement - Military T1 M",
+      "costs": {
+        "Liquid Oxygen": 344,
+        "Surface Stabilisers": 120,
+        "Evacuation Shelter": 72,
+        "Survival Equipment": 48,
+        "Food Cartridges": 72,
+        "Fruit and Vegetables": 48,
+        "Ceramic Composites": 120,
+        "CMM Composite": 712,
+        "Polymers": 238,
+        "Building Fabricators": 120,
+        "Emergency Power Cells": 48,
+        "Basic Medicines": 72,
+        "Combat Stabilisers": 72,
+        "Aluminium": 1186,
+        "Copper": 60,
+        "Steel": 1898,
+        "Computer Components": 84,
+        "Micro Controllers": 24,
+        "Structural Regulators": 202,
+        "Military Grade Fabrics": 48,
+        "Battle Weapons": 48,
+        "Reactive Armour": 48
+      }
+    },
+    {
+      "name": "Surface - Settlement - Military T2 L",
+      "costs": {
+        "Liquid Oxygen": 516,
+        "Surface Stabilisers": 180,
+        "Evacuation Shelter": 108,
+        "Survival Equipment": 72,
+        "Food Cartridges": 108,
+        "Fruit and Vegetables": 72,
+        "Ceramic Composites": 180,
+        "CMM Composite": 1068,
+        "Polymers": 357,
+        "Building Fabricators": 180,
+        "Emergency Power Cells": 72,
+        "Basic Medicines": 108,
+        "Combat Stabilisers": 108,
+        "Aluminium": 1779,
+        "Copper": 90,
+        "Steel": 2847,
+        "Computer Components": 126,
+        "Micro Controllers": 36,
+        "Structural Regulators": 303,
+        "Military Grade Fabrics": 72,
+        "Battle Weapons": 72,
+        "Reactive Armour": 72
+      }
+    },
+    {
+      "name": "Surface - Settlement - Research Bio T1 S",
+      "costs": {
+        "Liquid Oxygen": 351,
+        "Surface Stabilisers": 81,
+        "Evacuation Shelter": 27,
+        "Survival Equipment": 14,
+        "Food Cartridges": 41,
+        "Fruit and Vegetables": 27,
+        "Ceramic Composites": 41,
+        "Polymers": 115,
+        "Semiconductors": 21,
+        "Superconductors": 21,
+        "Building Fabricators": 54,
+        "Emergency Power Cells": 27,
+        "Geological Equipment": 27,
+        "Basic Medicines": 14,
+        "Aluminium": 607,
+        "Copper": 34,
+        "Steel": 945,
+        "Advanced Catalysers": 95,
+        "Computer Components": 41,
+        "H.E. Suits": 27,
+        "Medical Diagnostic Equipment": 41,
+        "Micro Controllers": 14,
+        "Muon Imager": 95,
+        "Structural Regulators": 81
+      }
+    },
+    {
+      "name": "Surface - Settlement - Research Bio T1 M",
+      "costs": {
+        "Liquid Oxygen": 702,
+        "Surface Stabilisers": 162,
+        "Evacuation Shelter": 54,
+        "Survival Equipment": 28,
+        "Food Cartridges": 82,
+        "Fruit and Vegetables": 54,
+        "Ceramic Composites": 82,
+        "Polymers": 230,
+        "Semiconductors": 42,
+        "Superconductors": 42,
+        "Building Fabricators": 108,
+        "Emergency Power Cells": 54,
+        "Geological Equipment": 54,
+        "Basic Medicines": 28,
+        "Aluminium": 1214,
+        "Copper": 68,
+        "Steel": 1890,
+        "Advanced Catalysers": 190,
+        "Computer Components": 82,
+        "H.E. Suits": 54,
+        "Medical Diagnostic Equipment": 82,
+        "Micro Controllers": 28,
+        "Muon Imager": 190,
+        "Structural Regulators": 162
+      }
+    },
+    {
+      "name": "Surface - Settlement - Research Bio T2 L",
+      "costs": {
+        "Liquid Oxygen": 1053,
+        "Surface Stabilisers": 243,
+        "Evacuation Shelter": 81,
+        "Survival Equipment": 42,
+        "Food Cartridges": 123,
+        "Fruit and Vegetables": 81,
+        "Ceramic Composites": 123,
+        "Polymers": 345,
+        "Semiconductors": 63,
+        "Superconductors": 63,
+        "Building Fabricators": 162,
+        "Emergency Power Cells": 81,
+        "Geological Equipment": 81,
+        "Basic Medicines": 42,
+        "Aluminium": 1821,
+        "Copper": 102,
+        "Steel": 2835,
+        "Advanced Catalysers": 285,
+        "Computer Components": 123,
+        "H.E. Suits": 81,
+        "Medical Diagnostic Equipment": 123,
+        "Micro Controllers": 42,
+        "Muon Imager": 285,
+        "Structural Regulators": 243
+      }
+    },
+    {
+      "name": "Surface - Settlement - Tourism T1 S",
+      "costs": {
+        "Liquid Oxygen": 227,
+        "Surface Stabilisers": 57,
+        "Evacuation Shelter": 22,
+        "Survival Equipment": 15,
+        "Beer": 311,
+        "Liquor": 128,
+        "Wine": 156,
+        "Animal Meat": 71,
+        "Coffee": 71,
+        "Fish": 36,
+        "Fruit and Vegetables": 71,
+        "Tea": 170,
+        "Ceramic Composites": 43,
+        "Polymers": 114,
+        "Building Fabricators": 29,
+        "Emergency Power Cells": 15,
+        "Aluminium": 509,
+        "Copper": 22,
+        "Steel": 707,
+        "Computer Components": 15,
+        "Structural Regulators": 57
+      }
+    },
+    {
+      "name": "Surface - Settlement - Tourism T1 M",
+      "costs": {
+        "Liquid Oxygen": 454,
+        "Surface Stabilisers": 114,
+        "Evacuation Shelter": 44,
+        "Survival Equipment": 30,
+        "Beer": 622,
+        "Liquor": 256,
+        "Wine": 312,
+        "Animal Meat": 142,
+        "Coffee": 142,
+        "Fish": 72,
+        "Fruit and Vegetables": 142,
+        "Tea": 340,
+        "Ceramic Composites": 86,
+        "Polymers": 228,
+        "Building Fabricators": 58,
+        "Emergency Power Cells": 30,
+        "Aluminium": 1018,
+        "Copper": 44,
+        "Steel": 1414,
+        "Computer Components": 30,
+        "Structural Regulators": 114
+      }
+    },
+    {
+      "name": "Surface - Settlement - Tourism T2 L",
+      "costs": {
+        "Liquid Oxygen": 681,
+        "Surface Stabilisers": 171,
+        "Evacuation Shelter": 66,
+        "Survival Equipment": 45,
+        "Beer": 933,
+        "Liquor": 384,
+        "Wine": 468,
+        "Animal Meat": 213,
+        "Coffee": 213,
+        "Fish": 108,
+        "Fruit and Vegetables": 213,
+        "Tea": 510,
+        "Ceramic Composites": 129,
+        "Polymers": 342,
+        "Building Fabricators": 87,
+        "Emergency Power Cells": 45,
+        "Aluminium": 1527,
+        "Copper": 66,
+        "Steel": 2121,
+        "Computer Components": 45,
+        "Structural Regulators": 171
+      }
+    },
+    {
+      "name": "Surface - Hub - Extraction",
+      "costs": {
+        "Surface Stabilisers": 756,
+        "Evacuation Shelter": 51,
+        "Survival Equipment": 26,
+        "Food Cartridges": 51,
+        "Fruit and Vegetables": 34,
+        "Ceramic Composites": 252,
+        "Polymers": 672,
+        "Building Fabricators": 210,
+        "Emergency Power Cells": 42,
+        "Geological Equipment": 210,
+        "Aluminium": 2352,
+        "Copper": 84,
+        "Steel": 3359,
+        "Bioreducing Lichen": 714,
+        "Computer Components": 38,
+        "H.E. Suits": 126,
+        "Muon Imager": 160,
+        "Robotics": 252,
+        "Structural Regulators": 504
+      }
+    },
+    {
+      "name": "Surface - Hub - Civilian",
+      "costs": {
+        "Pesticides": 378,
+        "Surface Stabilisers": 588,
+        "Evacuation Shelter": 68,
+        "Survival Equipment": 38,
+        "Food Cartridges": 68,
+        "Fruit and Vegetables": 42,
+        "Ceramic Composites": 126,
+        "Polymers": 630,
+        "Building Fabricators": 84,
+        "Crop Harvesters": 210,
+        "Emergency Power Cells": 42,
+        "Agri-Medicines": 235,
+        "Aluminium": 2433,
+        "Copper": 68,
+        "Steel": 3775,
+        "Computer Components": 21,
+        "Structural Regulators": 336,
+        "Biowaste": 630
+      }
+    },
+    {
+      "name": "Surface - Hub - Exploration",
+      "costs": {
+        "Surface Stabilisers": 1419,
+        "Evacuation Shelter": 36,
+        "Survival Equipment": 18,
+        "Food Cartridges": 54,
+        "Fruit and Vegetables": 36,
+        "Ceramic Composites": 134,
+        "Polymers": 666,
+        "Building Fabricators": 89,
+        "Emergency Power Cells": 45,
+        "Geological Equipment": 621,
+        "Power Generators": 32,
+        "Aluminium": 2483,
+        "Copper": 178,
+        "Steel": 3547,
+        "Computer Components": 49,
+        "H.E. Suits": 249,
+        "Structural Regulators": 267
+      }
+    },
+    {
+      "name": "Surface - Hub - Outpost",
+      "costs": {
+        "Surface Stabilisers": 1061,
+        "Evacuation Shelter": 49,
+        "Survival Equipment": 29,
+        "Food Cartridges": 174,
+        "Fruit and Vegetables": 87,
+        "Ceramic Composites": 145,
+        "Building Fabricators": 290,
+        "Emergency Power Cells": 49,
+        "Power Generators": 25,
+        "Aluminium": 2797,
+        "Copper": 78,
+        "Steel": 4051,
+        "Computer Components": 25,
+        "Structural Regulators": 338
+      }
+    },
+    {
+      "name": "Surface - Hub - Scientific",
+      "costs": {
+        "Surface Stabilisers": 534,
+        "Evacuation Shelter": 36,
+        "Survival Equipment": 27,
+        "Food Cartridges": 54,
+        "Fruit and Vegetables": 36,
+        "Ceramic Composites": 223,
+        "Polymers": 712,
+        "Semiconductors": 72,
+        "Superconductors": 72,
+        "Building Fabricators": 178,
+        "Emergency Power Cells": 63,
+        "Geological Equipment": 401,
+        "Power Generators": 36,
+        "Basic Medicines": 72,
+        "Aluminium": 2581,
+        "Copper": 112,
+        "Steel": 3560,
+        "Advanced Catalysers": 170,
+        "Computer Components": 67,
+        "H.E. Suits": 156,
+        "Medical Diagnostic Equipment": 161,
+        "Micro Controllers": 49,
+        "Muon Imager": 107,
+        "Structural Regulators": 445
+      }
+    },
+    {
+      "name": "Surface - Hub - Military",
+      "costs": {
+        "Surface Stabilisers": 583,
+        "Evacuation Shelter": 75,
+        "Survival Equipment": 50,
+        "Food Cartridges": 125,
+        "Fruit and Vegetables": 42,
+        "Ceramic Composites": 375,
+        "CMM Composite": 333,
+        "Polymers": 708,
+        "Building Fabricators": 333,
+        "Emergency Power Cells": 63,
+        "Power Generators": 38,
+        "Basic Medicines": 109,
+        "Combat Stabilisers": 25,
+        "Aluminium": 2414,
+        "Copper": 105,
+        "Steel": 3746,
+        "Computer Components": 75,
+        "Micro Controllers": 55,
+        "Structural Regulators": 542,
+        "Military Grade Fabrics": 42,
+        "Battle Weapons": 42,
+        "Reactive Armour": 42
+      }
+    },
+    {
+      "name": "Surface - Hub - Refinery",
+      "costs": {
+        "Surface Stabilisers": 558,
+        "Evacuation Shelter": 56,
+        "Survival Equipment": 28,
+        "Food Cartridges": 56,
+        "Fruit and Vegetables": 38,
+        "Ceramic Composites": 279,
+        "Polymers": 744,
+        "Building Fabricators": 233,
+        "Emergency Power Cells": 47,
+        "Power Generators": 28,
+        "Thermal Cooling Units": 103,
+        "Aluminium": 2697,
+        "Copper": 93,
+        "Steel": 3720,
+        "Advanced Catalysers": 112,
+        "Computer Components": 42,
+        "H.E. Suits": 117,
+        "Resonating Separators": 84,
+        "Robotics": 419,
+        "Structural Regulators": 465
+      }
+    },
+    {
+      "name": "Surface - Hub - High Tech",
+      "costs": {
+        "Surface Stabilisers": 539,
+        "Evacuation Shelter": 45,
+        "Survival Equipment": 27,
+        "Food Cartridges": 54,
+        "Fruit and Vegetables": 36,
+        "Ceramic Composites": 225,
+        "CMM Composite": 270,
+        "Polymers": 673,
+        "Semiconductors": 108,
+        "Superconductors": 108,
+        "Building Fabricators": 135,
+        "Emergency Power Cells": 59,
+        "Power Generators": 27,
+        "Thermal Cooling Units": 211,
+        "Aluminium": 2512,
+        "Copper": 113,
+        "Steel": 3768,
+        "Computer Components": 68,
+        "Micro Controllers": 90,
+        "Robotics": 449,
+        "Structural Regulators": 404
+      }
+    },
+    {
+      "name": "Surface - Hub - Industrial",
+      "costs": {
+        "Surface Stabilisers": 498,
+        "Evacuation Shelter": 50,
+        "Survival Equipment": 25,
+        "Food Cartridges": 50,
+        "Fruit and Vegetables": 34,
+        "Ceramic Composites": 249,
+        "Polymers": 664,
+        "Semiconductors": 75,
+        "Superconductors": 75,
+        "Building Fabricators": 208,
+        "Emergency Power Cells": 42,
+        "Microbial Furnaces": 415,
+        "Mineral Extractors": 415,
+        "Power Generators": 25,
+        "Thermal Cooling Units": 117,
+        "Aluminium": 2407,
+        "Copper": 83,
+        "Steel": 3320,
+        "Computer Components": 38,
+        "H.E. Suits": 83,
+        "Micro Controllers": 50,
+        "Robotics": 332,
+        "Structural Regulators": 498
+      }
+    }
+  ]
+}

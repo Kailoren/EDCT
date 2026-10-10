@@ -1,0 +1,232 @@
+<Window x:Class="ColonyTracker.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:ColonyTracker"
+        Title="Settings" Icon="Assets/ColonyTrackerIcon.ico" Width="460" SizeToContent="Height"
+        Background="{StaticResource WindowBackground}" TextElement.Foreground="{StaticResource WindowForeground}"
+        FontFamily="Segoe UI" FontSize="13"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        WindowStyle="None" AllowsTransparency="False" PreviewMouseDown="Window_PreviewMouseDown">
+
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="32" ResizeBorderThickness="0"
+                      GlassFrameThickness="0" CornerRadius="0" UseAeroCaptionButtons="False"/>
+    </WindowChrome.WindowChrome>
+
+    <DockPanel>
+        <local:DialogTitleBar DockPanel.Dock="Top" TitleText="Settings" CloseClicked="Cancel_Click"/>
+
+        <StackPanel Margin="16">
+            <TextBlock Text="Cargo capacities" FontWeight="Bold" Foreground="{StaticResource Accent}" Margin="0,0,0,8"/>
+
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Large ship capacity (t)" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1" Name="LargeShipBox"/>
+            </Grid>
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Medium ship capacity (t)" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1" Name="MediumShipBox"/>
+            </Grid>
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Fleet carrier capacity (t)" VerticalAlignment="Center"/>
+                <TextBox Grid.Column="1" Name="CarrierBox"/>
+            </Grid>
+            <TextBlock Text="Elite Dangerous journal folder" FontWeight="Bold" Foreground="{StaticResource Accent}" Margin="0,8,0,8"/>
+            <TextBlock Text="Leave blank to auto-detect Saved Games\Frontier Developments\Elite Dangerous."
+                       TextWrapping="Wrap" Foreground="{StaticResource Muted}" Margin="0,0,0,4"/>
+            <TextBox Name="JournalDirBox"/>
+            <TextBlock Text="Changing this takes effect after restarting ColonyTracker."
+                       TextWrapping="Wrap" Foreground="{StaticResource Muted}" FontStyle="Italic" Margin="0,4,0,0"/>
+
+            <Grid Margin="0,16,0,8">
+                <TextBlock Text="Overlay appearance" FontWeight="Bold" Foreground="{StaticResource Accent}" VerticalAlignment="Center"/>
+                <Button Content="Reset to defaults" Style="{StaticResource SecondaryButton}" Padding="10,4"
+                        HorizontalAlignment="Right" Click="ResetOverlayDefaults_Click"/>
+            </Grid>
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Opacity" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Slider x:Name="OverlayOpacitySlider" Minimum="20" Maximum="100" Width="180"
+                            VerticalAlignment="Center" ValueChanged="OverlayOpacitySlider_ValueChanged"/>
+                    <TextBlock x:Name="OverlayOpacityLabel" VerticalAlignment="Center" Width="40" Margin="8,0,0,0"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Background" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Border x:Name="OverlayBackgroundSwatch" Width="28" Height="20" BorderBrush="{StaticResource Border}"
+                            BorderThickness="1" CornerRadius="3" Margin="0,0,8,0"/>
+                    <Button Content="Choose..." Style="{StaticResource SecondaryButton}" Padding="10,4"
+                            Click="ChooseOverlayBackground_Click"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Border" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Border x:Name="OverlayBorderSwatch" Width="28" Height="20" BorderBrush="{StaticResource Border}"
+                            BorderThickness="1" CornerRadius="3" Margin="0,0,8,0"/>
+                    <Button Content="Choose..." Style="{StaticResource SecondaryButton}" Padding="10,4"
+                            Click="ChooseOverlayBorder_Click"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Headers / highlights" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Border x:Name="OverlayHeaderSwatch" Width="28" Height="20" BorderBrush="{StaticResource Border}"
+                            BorderThickness="1" CornerRadius="3" Margin="0,0,8,0"/>
+                    <Button Content="Choose..." Style="{StaticResource SecondaryButton}" Padding="10,4"
+                            Click="ChooseOverlayHeader_Click"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Text" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Border x:Name="OverlayTextSwatch" Width="28" Height="20" BorderBrush="{StaticResource Border}"
+                            BorderThickness="1" CornerRadius="3" Margin="0,0,8,0"/>
+                    <Button Content="Choose..." Style="{StaticResource SecondaryButton}" Padding="10,4"
+                            Click="ChooseOverlayText_Click"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Muted / secondary text" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Border x:Name="OverlayMutedSwatch" Width="28" Height="20" BorderBrush="{StaticResource Border}"
+                            BorderThickness="1" CornerRadius="3" Margin="0,0,8,0"/>
+                    <Button Content="Choose..." Style="{StaticResource SecondaryButton}" Padding="10,4"
+                            Click="ChooseOverlayMuted_Click"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Buttons (active)" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Border x:Name="OverlayButtonSwatch" Width="28" Height="20" BorderBrush="{StaticResource Border}"
+                            BorderThickness="1" CornerRadius="3" Margin="0,0,8,0"/>
+                    <Button Content="Choose..." Style="{StaticResource SecondaryButton}" Padding="10,4"
+                            Click="ChooseOverlayButton_Click"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Buttons (inactive tab)" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Border x:Name="OverlayInactiveButtonSwatch" Width="28" Height="20" BorderBrush="{StaticResource Border}"
+                            BorderThickness="1" CornerRadius="3" Margin="0,0,8,0"/>
+                    <Button Content="Choose..." Style="{StaticResource SecondaryButton}" Padding="10,4"
+                            Click="ChooseOverlayInactiveButton_Click"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="0,0,4,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Button text" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <Border x:Name="OverlayButtonTextSwatch" Width="28" Height="20" BorderBrush="{StaticResource Border}"
+                            BorderThickness="1" CornerRadius="3" Margin="0,0,8,0"/>
+                    <Button Content="Choose..." Style="{StaticResource SecondaryButton}" Padding="10,4"
+                            Click="ChooseOverlayButtonText_Click"/>
+                </StackPanel>
+            </Grid>
+
+            <TextBlock Text="Hotkeys" FontWeight="Bold" Foreground="{StaticResource Accent}" Margin="0,16,0,8"/>
+            <TextBlock TextWrapping="Wrap" Foreground="{StaticResource Muted}" Margin="0,0,0,8"
+                       Text="System-wide - these fire even while Elite Dangerous has focus. Click a box, then press the key combination you want."/>
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Show/Hide overlay" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBox x:Name="OverlayToggleHotkeyBox" Width="170" IsReadOnly="True" IsReadOnlyCaretVisible="False"
+                             Cursor="Hand" TextAlignment="Center"
+                             GotFocus="HotkeyBox_GotFocus" LostFocus="HotkeyBox_LostFocus" PreviewKeyDown="HotkeyBox_PreviewKeyDown"/>
+                    <Button Content="Clear" Style="{StaticResource SecondaryButton}" Padding="10,4" Margin="8,0,0,0"
+                            Click="ClearOverlayToggleHotkey_Click"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Lock/Unlock overlay" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBox x:Name="OverlayLockHotkeyBox" Width="170" IsReadOnly="True" IsReadOnlyCaretVisible="False"
+                             Cursor="Hand" TextAlignment="Center"
+                             GotFocus="HotkeyBox_GotFocus" LostFocus="HotkeyBox_LostFocus" PreviewKeyDown="HotkeyBox_PreviewKeyDown"/>
+                    <Button Content="Clear" Style="{StaticResource SecondaryButton}" Padding="10,4" Margin="8,0,0,0"
+                            Click="ClearOverlayLockHotkey_Click"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="0,0,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="180"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Toggle Loading/Unloading" VerticalAlignment="Center"/>
+                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                    <TextBox x:Name="OverlayModeToggleHotkeyBox" Width="170" IsReadOnly="True" IsReadOnlyCaretVisible="False"
+                             Cursor="Hand" TextAlignment="Center"
+                             GotFocus="HotkeyBox_GotFocus" LostFocus="HotkeyBox_LostFocus" PreviewKeyDown="HotkeyBox_PreviewKeyDown"/>
+                    <Button Content="Clear" Style="{StaticResource SecondaryButton}" Padding="10,4" Margin="8,0,0,0"
+                            Click="ClearOverlayModeToggleHotkey_Click"/>
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="0,20,0,0">
+                <Button Content="Toggle Overlay" Style="{StaticResource SecondaryButton}" Padding="14,5"
+                        HorizontalAlignment="Left" Click="ToggleOverlay_Click"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <Button Content="Apply" Style="{StaticResource SecondaryButton}" Padding="14,5" Margin="0,0,8,0" Click="Apply_Click"/>
+                    <Button Content="Cancel" Style="{StaticResource SecondaryButton}" Padding="14,5" Margin="0,0,8,0" Click="Cancel_Click" IsCancel="True"/>
+                    <Button Content="Save" Padding="14,5" Click="Save_Click" IsDefault="True"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+    </DockPanel>
+</Window>

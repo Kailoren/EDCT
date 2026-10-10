@@ -1,0 +1,458 @@
+{
+  "no_truss": {
+    "structureType": "Orbital - Starport - Coriolis",
+    "stationType": "No Truss"
+  },
+  "dual_truss": {
+    "structureType": "Orbital - Starport - Coriolis",
+    "stationType": "Dual Truss"
+  },
+  "quad_truss": {
+    "structureType": "Orbital - Starport - Coriolis",
+    "stationType": "Quad Truss"
+  },
+  "dodec": {
+    "structureType": "Orbital - Starport - Dodecahedron",
+    "stationType": "No Truss Dodo"
+  },
+  "quint_truss": {
+    "structureType": "Orbital - Starport - Dodecahedron",
+    "stationType": "Quint Truss"
+  },
+  "dec_truss": {
+    "structureType": "Orbital - Starport - Dodecahedron",
+    "stationType": "Dec Truss"
+  },
+  "ocellus": {
+    "structureType": "Orbital - Starport - Ocellus",
+    "stationType": "Ocellus"
+  },
+  "apollo": {
+    "structureType": "Orbital - Starport - Orbis",
+    "stationType": "Apollo"
+  },
+  "artemis": {
+    "structureType": "Orbital - Starport - Orbis",
+    "stationType": "Artemis"
+  },
+  "plutus": {
+    "structureType": "Orbital - Outpost - Commercial",
+    "stationType": "Plutus"
+  },
+  "vulcan": {
+    "structureType": "Orbital - Outpost - Industrial",
+    "stationType": "Vulcan"
+  },
+  "dysnomia": {
+    "structureType": "Orbital - Outpost - Criminal",
+    "stationType": "Dysnomia"
+  },
+  "vesta": {
+    "structureType": "Orbital - Outpost - Civilian",
+    "stationType": "Vesta"
+  },
+  "prometheus": {
+    "structureType": "Orbital - Outpost - Scientific",
+    "stationType": "Prometheus"
+  },
+  "nemesis": {
+    "structureType": "Orbital - Outpost - Military",
+    "stationType": "Nemesis"
+  },
+  "hermes": {
+    "structureType": "Orbital - Installation - Satellite",
+    "stationType": "Hermes"
+  },
+  "angelia": {
+    "structureType": "Orbital - Installation - Satellite",
+    "stationType": "Angelia"
+  },
+  "eirene": {
+    "structureType": "Orbital - Installation - Satellite",
+    "stationType": "Eirene"
+  },
+  "pistis": {
+    "structureType": "Orbital - Installation - Comm Station",
+    "stationType": "Pistis"
+  },
+  "soter": {
+    "structureType": "Orbital - Installation - Comm Station",
+    "stationType": "Soter"
+  },
+  "aletheia": {
+    "structureType": "Orbital - Installation - Comm Station",
+    "stationType": "Aletheia"
+  },
+  "demeter": {
+    "structureType": "Orbital - Installation - Space Farm",
+    "stationType": "Demeter"
+  },
+  "apate": {
+    "structureType": "Orbital - Installation - Pirate Base",
+    "stationType": "Apate"
+  },
+  "laverna": {
+    "structureType": "Orbital - Installation - Pirate Base",
+    "stationType": "Laverna"
+  },
+  "euthenia": {
+    "structureType": "Orbital - Installation - Mining Outpost",
+    "stationType": "Euthenia"
+  },
+  "phorcys": {
+    "structureType": "Orbital - Installation - Mining Outpost",
+    "stationType": "Phorcys"
+  },
+  "enodia": {
+    "structureType": "Orbital - Installation - Relay Station",
+    "stationType": "Enodia"
+  },
+  "ichnaea": {
+    "structureType": "Orbital - Installation - Relay Station",
+    "stationType": "Ichnaea"
+  },
+  "vacuna": {
+    "structureType": "Orbital - Installation - Military",
+    "stationType": "Vacuna"
+  },
+  "alastor": {
+    "structureType": "Orbital - Installation - Military",
+    "stationType": "Alastor"
+  },
+  "dicaeosyne": {
+    "structureType": "Orbital - Installation - Security Station",
+    "stationType": "Dicaeosyne"
+  },
+  "poena": {
+    "structureType": "Orbital - Installation - Security Station",
+    "stationType": "Poena"
+  },
+  "eunomia": {
+    "structureType": "Orbital - Installation - Security Station",
+    "stationType": "Eunomia"
+  },
+  "nomos": {
+    "structureType": "Orbital - Installation - Security Station",
+    "stationType": "Nomos"
+  },
+  "harmonia": {
+    "structureType": "Orbital - Installation - Government",
+    "stationType": "Harmonia"
+  },
+  "asclepius": {
+    "structureType": "Orbital - Installation - Medical",
+    "stationType": "Asclepius"
+  },
+  "eupraxia": {
+    "structureType": "Orbital - Installation - Medical",
+    "stationType": "Eupraxia"
+  },
+  "astraeus": {
+    "structureType": "Orbital - Installation - Research Station",
+    "stationType": "Astraeus"
+  },
+  "coeus": {
+    "structureType": "Orbital - Installation - Research Station",
+    "stationType": "Coeus"
+  },
+  "dodona": {
+    "structureType": "Orbital - Installation - Research Station",
+    "stationType": "Dodona"
+  },
+  "dione": {
+    "structureType": "Orbital - Installation - Research Station",
+    "stationType": "Dione"
+  },
+  "hedone": {
+    "structureType": "Orbital - Installation - Tourist",
+    "stationType": "Hedone"
+  },
+  "opora": {
+    "structureType": "Orbital - Installation - Tourist",
+    "stationType": "Opora"
+  },
+  "pasithea": {
+    "structureType": "Orbital - Installation - Tourist",
+    "stationType": "Pasithea"
+  },
+  "dionysus": {
+    "structureType": "Orbital - Installation - Space Bar",
+    "stationType": "Dionysus"
+  },
+  "bacchus": {
+    "structureType": "Orbital - Installation - Space Bar",
+    "stationType": "Bacchus"
+  },
+  "hestia": {
+    "structureType": "Surface - Planetary Port - Outpost Civilian",
+    "stationType": "Hestia"
+  },
+  "decima": {
+    "structureType": "Surface - Planetary Port - Outpost Civilian",
+    "stationType": "Decima"
+  },
+  "atropos": {
+    "structureType": "Surface - Planetary Port - Outpost Civilian",
+    "stationType": "Atropos"
+  },
+  "nona": {
+    "structureType": "Surface - Planetary Port - Outpost Civilian",
+    "stationType": "Nona"
+  },
+  "lachesis": {
+    "structureType": "Surface - Planetary Port - Outpost Civilian",
+    "stationType": "Lachesis"
+  },
+  "clotho": {
+    "structureType": "Surface - Planetary Port - Outpost Civilian",
+    "stationType": "Clotho"
+  },
+  "hephaestus": {
+    "structureType": "Surface - Planetary Port - Outpost Industrial",
+    "stationType": "Hephaestus"
+  },
+  "opis": {
+    "structureType": "Surface - Planetary Port - Outpost Industrial",
+    "stationType": "Opis"
+  },
+  "ponos": {
+    "structureType": "Surface - Planetary Port - Outpost Industrial",
+    "stationType": "Ponos"
+  },
+  "tethys": {
+    "structureType": "Surface - Planetary Port - Outpost Industrial",
+    "stationType": "Tethys"
+  },
+  "bia": {
+    "structureType": "Surface - Planetary Port - Outpost Industrial",
+    "stationType": "Bia"
+  },
+  "mefitis": {
+    "structureType": "Surface - Planetary Port - Outpost Industrial",
+    "stationType": "Mefitis"
+  },
+  "necessitas": {
+    "structureType": "Surface - Planetary Port - Outpost Scientific",
+    "stationType": "Necessitas"
+  },
+  "ananke": {
+    "structureType": "Surface - Planetary Port - Outpost Scientific",
+    "stationType": "Ananke"
+  },
+  "fauna": {
+    "structureType": "Surface - Planetary Port - Outpost Scientific",
+    "stationType": "Fauna"
+  },
+  "providentia": {
+    "structureType": "Surface - Planetary Port - Outpost Scientific",
+    "stationType": "Providentia"
+  },
+  "antevorta": {
+    "structureType": "Surface - Planetary Port - Outpost Scientific",
+    "stationType": "Antevorta"
+  },
+  "porrima": {
+    "structureType": "Surface - Planetary Port - Outpost Scientific",
+    "stationType": "Porrima"
+  },
+  "zeus": {
+    "structureType": "Surface - Planetary Port - Port",
+    "stationType": "Zeus"
+  },
+  "hera": {
+    "structureType": "Surface - Planetary Port - Port",
+    "stationType": "Hera"
+  },
+  "poseidon": {
+    "structureType": "Surface - Planetary Port - Port",
+    "stationType": "Poseidon"
+  },
+  "aphrodite": {
+    "structureType": "Surface - Planetary Port - Port",
+    "stationType": "Aphrodite"
+  },
+  "consus": {
+    "structureType": "Surface - Settlement - Agriculture T1 S",
+    "stationType": "Consus (S)"
+  },
+  "picumnus": {
+    "structureType": "Surface - Settlement - Agriculture T1 M",
+    "stationType": "Picumnus (L)"
+  },
+  "annona": {
+    "structureType": "Surface - Settlement - Agriculture T1 M",
+    "stationType": "Annona (S)"
+  },
+  "ceres": {
+    "structureType": "Surface - Settlement - Agriculture T2 L",
+    "stationType": "Ceres (L)"
+  },
+  "fornax": {
+    "structureType": "Surface - Settlement - Agriculture T2 L",
+    "stationType": "Fornax (L)"
+  },
+  "ourea": {
+    "structureType": "Surface - Settlement - Extraction T1 S",
+    "stationType": "Ourea (S)"
+  },
+  "mantus": {
+    "structureType": "Surface - Settlement - Extraction T1 M",
+    "stationType": "Mantus (M)"
+  },
+  "orcus": {
+    "structureType": "Surface - Settlement - Extraction T1 M",
+    "stationType": "Orcus (L)"
+  },
+  "erebus": {
+    "structureType": "Surface - Settlement - Extraction T2 L",
+    "stationType": "Erebus (L)"
+  },
+  "aerecura": {
+    "structureType": "Surface - Settlement - Extraction T2 L",
+    "stationType": "Aerecura (L)"
+  },
+  "fontus": {
+    "structureType": "Surface - Settlement - Industrial T1 S",
+    "stationType": "Fontus (S)"
+  },
+  "meteope": {
+    "structureType": "Surface - Settlement - Industrial T1 M",
+    "stationType": "Meteope (L)"
+  },
+  "palici": {
+    "structureType": "Surface - Settlement - Industrial T1 M",
+    "stationType": "Palici (L)"
+  },
+  "minthe": {
+    "structureType": "Surface - Settlement - Industrial T1 M",
+    "stationType": "Minthe (M)"
+  },
+  "gaea": {
+    "structureType": "Surface - Settlement - Industrial T2 L",
+    "stationType": "Gaea (L)"
+  },
+  "ioke": {
+    "structureType": "Surface - Settlement - Military T1 S",
+    "stationType": "Ioke (M)"
+  },
+  "bellona": {
+    "structureType": "Surface - Settlement - Military T1 M",
+    "stationType": "Bellona (S)"
+  },
+  "enyo": {
+    "structureType": "Surface - Settlement - Military T1 M",
+    "stationType": "Enyo (M)"
+  },
+  "polemos": {
+    "structureType": "Surface - Settlement - Military T1 M",
+    "stationType": "Polemos (M)"
+  },
+  "minerva": {
+    "structureType": "Surface - Settlement - Military T2 L",
+    "stationType": "Minerva (L)"
+  },
+  "pheobe": {
+    "structureType": "Surface - Settlement - Research Bio T1 S",
+    "stationType": "Pheobe (S)"
+  },
+  "asteria": {
+    "structureType": "Surface - Settlement - Research Bio T1 M",
+    "stationType": "Asteria (S)"
+  },
+  "caerus": {
+    "structureType": "Surface - Settlement - Research Bio T1 M",
+    "stationType": "Caerus (S)"
+  },
+  "chronos": {
+    "structureType": "Surface - Settlement - Research Bio T2 L",
+    "stationType": "Chronos (L)"
+  },
+  "aergia": {
+    "structureType": "Surface - Settlement - Tourism T1 S",
+    "stationType": "Aergia (M)"
+  },
+  "comus": {
+    "structureType": "Surface - Settlement - Tourism T1 M",
+    "stationType": "Comos (L)"
+  },
+  "gelos": {
+    "structureType": "Surface - Settlement - Tourism T1 M",
+    "stationType": "Gelos (L)"
+  },
+  "fufluns": {
+    "structureType": "Surface - Settlement - Tourism T2 L",
+    "stationType": "Fufluns (L)"
+  },
+  "tartarus": {
+    "structureType": "Surface - Hub - Extraction",
+    "stationType": "Tartarus"
+  },
+  "aegle": {
+    "structureType": "Surface - Hub - Civilian",
+    "stationType": "Aegle"
+  },
+  "tellus": {
+    "structureType": "Surface - Hub - Industrial",
+    "stationType": "Tellus B"
+  },
+  "tellus_i": {
+    "structureType": "Surface - Hub - Industrial",
+    "stationType": "Tellus B"
+  },
+  "tellus_e": {
+    "structureType": "Surface - Hub - Exploration",
+    "stationType": "Tellus A"
+  },
+  "comos": {
+    "structureType": "Surface - Settlement - Tourism T1 M",
+    "stationType": "Comos (L)"
+  },
+  "coriolis": {
+    "structureType": "Orbital - Starport - Coriolis",
+    "stationType": null
+  },
+  "orbis": {
+    "structureType": "Orbital - Starport - Orbis",
+    "stationType": null
+  },
+  "io": {
+    "structureType": "Surface - Hub - Outpost",
+    "stationType": "Io"
+  },
+  "athena": {
+    "structureType": "Surface - Hub - Scientific",
+    "stationType": "Athena"
+  },
+  "caelus": {
+    "structureType": "Surface - Hub - Scientific",
+    "stationType": "Caelus"
+  },
+  "alala": {
+    "structureType": "Surface - Hub - Military",
+    "stationType": "Alala"
+  },
+  "ares": {
+    "structureType": "Surface - Hub - Military",
+    "stationType": "Ares"
+  },
+  "silenus": {
+    "structureType": "Surface - Hub - Refinery",
+    "stationType": "Silenus"
+  },
+  "janus": {
+    "structureType": "Surface - Hub - High Tech",
+    "stationType": "Janus"
+  },
+  "molae": {
+    "structureType": "Surface - Hub - Industrial",
+    "stationType": "Molae"
+  },
+  "eunostus": {
+    "structureType": "Surface - Hub - Industrial",
+    "stationType": "Eunostus"
+  },
+  "asteroid": {
+    "structureType": "Orbital - Starport - Asteroid Base",
+    "stationType": null
+  }
+}

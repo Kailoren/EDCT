@@ -1,0 +1,262 @@
+{
+  "Orbital - Starport - Coriolis": [
+    "No Truss",
+    "Dual Truss",
+    "Quad Truss"
+  ],
+  "Orbital - Starport - Coriolis (Primary)": [
+    "No Truss (P)"
+  ],
+  "Orbital - Starport - Asteroid Base": [
+    "Ice",
+    "Metal",
+    "Rock"
+  ],
+  "Orbital - Starport - Asteroid Base (Primary)": [
+    "Ice (P)",
+    "Metal (P)",
+    "Rock (P)"
+  ],
+  "Orbital - Starport - Ocellus": [
+    "Ocellus"
+  ],
+  "Orbital - Starport - Ocellus (Primary)": [
+    "Ocellus (P)"
+  ],
+  "Orbital - Starport - Orbis": [
+    "Apollo",
+    "Artemis"
+  ],
+  "Orbital - Starport - Orbis (Primary)": [
+    "Apollo (P)",
+    "Artemis (P)"
+  ],
+  "Orbital - Starport - Dodecahedron": [
+    "No Truss Dodo",
+    "Quint Truss",
+    "Dec Truss"
+  ],
+  "Orbital - Starport - Dodecahedron (Primary)": [
+    "No Truss Dodo (P)",
+    "Quint Truss (P)",
+    "Dec Truss (P)"
+  ],
+  "Orbital - Outpost - Commercial": [
+    "Plutus"
+  ],
+  "Orbital - Outpost - Commercial (Primary)": [
+    "Plutus (P)"
+  ],
+  "Orbital - Outpost - Industrial": [
+    "Vulcan"
+  ],
+  "Orbital - Outpost - Industrial (Primary)": [
+    "Vulcan (P)"
+  ],
+  "Orbital - Outpost - Criminal": [
+    "Dysnomia"
+  ],
+  "Orbital - Outpost - Criminal (Primary)": [
+    "Dysnomia (P)"
+  ],
+  "Orbital - Outpost - Civilian": [
+    "Vesta"
+  ],
+  "Orbital - Outpost - Civilian (Primary)": [
+    "Vesta (P)"
+  ],
+  "Orbital - Outpost - Scientific": [
+    "Prometheus"
+  ],
+  "Orbital - Outpost - Scientific (Primary)": [
+    "Prometheus (P)"
+  ],
+  "Orbital - Outpost - Military": [
+    "Nemesis"
+  ],
+  "Orbital - Outpost - Military (Primary)": [
+    "Nemesis (P)"
+  ],
+  "Orbital - Installation - Satellite": [
+    "Hermes",
+    "Angelia",
+    "Eirene"
+  ],
+  "Orbital - Installation - Comm Station": [
+    "Pistis",
+    "Soter",
+    "Aletheia"
+  ],
+  "Orbital - Installation - Space Farm": [
+    "Demeter"
+  ],
+  "Orbital - Installation - Pirate Base": [
+    "Apate",
+    "Laverna"
+  ],
+  "Orbital - Installation - Mining Outpost": [
+    "Euthenia",
+    "Phorcys"
+  ],
+  "Orbital - Installation - Relay Station": [
+    "Enodia",
+    "Ichnaea"
+  ],
+  "Orbital - Installation - Military": [
+    "Vacuna",
+    "Alastor"
+  ],
+  "Orbital - Installation - Security Station": [
+    "Dicaeosyne",
+    "Poena",
+    "Eunomia",
+    "Nomos"
+  ],
+  "Orbital - Installation - Government": [
+    "Harmonia"
+  ],
+  "Orbital - Installation - Medical": [
+    "Asclepius",
+    "Eupraxia"
+  ],
+  "Orbital - Installation - Research Station": [
+    "Astraeus",
+    "Coeus",
+    "Dodona",
+    "Dione"
+  ],
+  "Orbital - Installation - Tourist": [
+    "Hedone",
+    "Opora",
+    "Pasithea"
+  ],
+  "Orbital - Installation - Space Bar": [
+    "Dionysus",
+    "Bacchus"
+  ],
+  "Surface - Planetary Port - Outpost Civilian": [
+    "Hestia",
+    "Decima",
+    "Atropos",
+    "Nona",
+    "Lachesis",
+    "Clotho"
+  ],
+  "Surface - Planetary Port - Outpost Industrial": [
+    "Hephaestus",
+    "Opis",
+    "Ponos",
+    "Tethys",
+    "Bia",
+    "Mefitis"
+  ],
+  "Surface - Planetary Port - Outpost Scientific": [
+    "Necessitas",
+    "Ananke",
+    "Fauna",
+    "Providentia",
+    "Antevorta",
+    "Porrima"
+  ],
+  "Surface - Planetary Port - Port": [
+    "Zeus",
+    "Hera",
+    "Poseidon",
+    "Aphrodite"
+  ],
+  "Surface - Settlement - Agriculture T1 S": [
+    "Consus (S)"
+  ],
+  "Surface - Settlement - Agriculture T1 M": [
+    "Picumnus (L)",
+    "Annona (S)"
+  ],
+  "Surface - Settlement - Agriculture T2 L": [
+    "Ceres (L)",
+    "Fornax (L)"
+  ],
+  "Surface - Settlement - Extraction T1 S": [
+    "Ourea (S)"
+  ],
+  "Surface - Settlement - Extraction T1 M": [
+    "Mantus (M)",
+    "Orcus (L)"
+  ],
+  "Surface - Settlement - Extraction T2 L": [
+    "Erebus (L)",
+    "Aerecura (L)"
+  ],
+  "Surface - Settlement - Industrial T1 S": [
+    "Fontus (S)"
+  ],
+  "Surface - Settlement - Industrial T1 M": [
+    "Meteope (L)",
+    "Palici (L)",
+    "Minthe (M)"
+  ],
+  "Surface - Settlement - Industrial T2 L": [
+    "Gaea (L)"
+  ],
+  "Surface - Settlement - Military T1 S": [
+    "Ioke (M)"
+  ],
+  "Surface - Settlement - Military T1 M": [
+    "Bellona (S)",
+    "Enyo (M)",
+    "Polemos (M)"
+  ],
+  "Surface - Settlement - Military T2 L": [
+    "Minerva (L)"
+  ],
+  "Surface - Settlement - Research Bio T1 S": [
+    "Pheobe (S)"
+  ],
+  "Surface - Settlement - Research Bio T1 M": [
+    "Asteria (S)",
+    "Caerus (S)"
+  ],
+  "Surface - Settlement - Research Bio T2 L": [
+    "Chronos (L)"
+  ],
+  "Surface - Settlement - Tourism T1 S": [
+    "Aergia (M)"
+  ],
+  "Surface - Settlement - Tourism T1 M": [
+    "Comos (L)",
+    "Gelos (L)"
+  ],
+  "Surface - Settlement - Tourism T2 L": [
+    "Fufluns (L)"
+  ],
+  "Surface - Hub - Extraction": [
+    "Tartarus"
+  ],
+  "Surface - Hub - Civilian": [
+    "Aegle"
+  ],
+  "Surface - Hub - Exploration": [
+    "Tellus A"
+  ],
+  "Surface - Hub - Outpost": [
+    "Io"
+  ],
+  "Surface - Hub - Scientific": [
+    "Athena",
+    "Caelus"
+  ],
+  "Surface - Hub - Military": [
+    "Alala",
+    "Ares"
+  ],
+  "Surface - Hub - Refinery": [
+    "Silenus"
+  ],
+  "Surface - Hub - High Tech": [
+    "Janus"
+  ],
+  "Surface - Hub - Industrial": [
+    "Molae",
+    "Tellus B",
+    "Eunostus"
+  ]
+}

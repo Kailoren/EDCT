@@ -1,0 +1,416 @@
+{
+  "systemName": "28 n Herculis",
+  "slots": [
+    {
+      "body": "A 7 a",
+      "slotNumber": 1,
+      "name": "Haxel's Folly",
+      "structureType": "Orbital - Outpost - Civilian",
+      "notes": "🠈 Primary Station on this row",
+      "active": false
+    },
+    {
+      "body": "A 7 d",
+      "slotNumber": 1,
+      "name": "Thordarson Mining Site",
+      "structureType": "Surface - Settlement - Extraction T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 b",
+      "slotNumber": 1,
+      "name": "Hardy Dredging Station",
+      "structureType": "Surface - Settlement - Extraction T1 M",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 d",
+      "slotNumber": 2,
+      "name": "Mellors Drilling Enterprise",
+      "structureType": "Surface - Settlement - Extraction T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 b",
+      "slotNumber": 2,
+      "name": "Brewer Mines",
+      "structureType": "Surface - Settlement - Extraction T1 M",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 d",
+      "slotNumber": 3,
+      "name": "Moulin's Mine",
+      "structureType": "Surface - Settlement - Extraction T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 d",
+      "slotNumber": 1,
+      "name": "Black Horizons",
+      "structureType": "Orbital - Starport - Dodecahedron",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A",
+      "slotNumber": 1,
+      "name": "Napier Terminal",
+      "structureType": "Orbital - Installation - Relay Station",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A",
+      "slotNumber": 2,
+      "name": "Clayton Relay",
+      "structureType": "Orbital - Installation - Security Station",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 5 b",
+      "slotNumber": 1,
+      "name": "Snow Beacon",
+      "structureType": "Orbital - Installation - Satellite",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 d",
+      "slotNumber": 2,
+      "name": "Arc Depot",
+      "structureType": "Orbital - Installation - Mining Outpost",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 5 b",
+      "slotNumber": 2,
+      "name": null,
+      "structureType": "Orbital - Installation - Security Station",
+      "notes": null,
+      "active": true
+    },
+    {
+      "body": "A 7 d",
+      "slotNumber": 3,
+      "name": "England Platform",
+      "structureType": "Orbital - Installation - Mining Outpost",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 f",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Surface - Settlement - Agriculture T2 L",
+      "notes": null,
+      "active": true
+    },
+    {
+      "body": "A 7 f",
+      "slotNumber": 2,
+      "name": null,
+      "structureType": "Surface - Settlement - Agriculture T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 f",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Orbital - Starport - Ocellus",
+      "notes": null,
+      "active": true
+    },
+    {
+      "body": "A 7 b",
+      "slotNumber": 3,
+      "name": null,
+      "structureType": "Surface - Settlement - Extraction T1 M",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 a",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Surface - Settlement - Extraction T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 5 b",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Surface - Settlement - Military T1 M",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 5 c a",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Surface - Settlement - Extraction T1 M",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 5 c a",
+      "slotNumber": 2,
+      "name": null,
+      "structureType": "Surface - Settlement - Extraction T1 M",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 f",
+      "slotNumber": 3,
+      "name": null,
+      "structureType": "Surface - Settlement - Agriculture T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 f",
+      "slotNumber": 4,
+      "name": null,
+      "structureType": "Surface - Settlement - Agriculture T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 a",
+      "slotNumber": 2,
+      "name": null,
+      "structureType": "Surface - Settlement - Extraction T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 c",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Orbital - Outpost - Industrial",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 b",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Orbital - Installation - Mining Outpost",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 9 a",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Surface - Settlement - Tourism T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 9 a",
+      "slotNumber": 2,
+      "name": null,
+      "structureType": "Surface - Settlement - Tourism T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 e",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Orbital - Starport - Dodecahedron",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 5 c",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Surface - Settlement - Military T1 M",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 5 c",
+      "slotNumber": 2,
+      "name": null,
+      "structureType": "Surface - Settlement - Military T1 M",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 5 c",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Orbital - Installation - Security Station",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 5 b",
+      "slotNumber": 3,
+      "name": null,
+      "structureType": "Orbital - Installation - Security Station",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 9 c",
+      "slotNumber": 2,
+      "name": null,
+      "structureType": "Orbital - Outpost - Industrial",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 9 c",
+      "slotNumber": 3,
+      "name": null,
+      "structureType": "Orbital - Outpost - Industrial",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 9 a",
+      "slotNumber": 3,
+      "name": null,
+      "structureType": "Surface - Settlement - Tourism T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 e",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Surface - Planetary Port - Outpost Scientific",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 e",
+      "slotNumber": 2,
+      "name": null,
+      "structureType": "Surface - Settlement - Research Bio T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 e",
+      "slotNumber": 3,
+      "name": null,
+      "structureType": "Surface - Settlement - Research Bio T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 11",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Orbital - Outpost - Industrial",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 11",
+      "slotNumber": 2,
+      "name": null,
+      "structureType": "Orbital - Outpost - Industrial",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 9 c",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Surface - Settlement - Industrial T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 9 c",
+      "slotNumber": 2,
+      "name": null,
+      "structureType": "Surface - Settlement - Industrial T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 9 a",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Orbital - Outpost - Commercial",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 c a",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Orbital - Outpost - Industrial",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 c a",
+      "slotNumber": 2,
+      "name": null,
+      "structureType": "Orbital - Outpost - Industrial",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 c a",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Surface - Settlement - Industrial T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 c a",
+      "slotNumber": 2,
+      "name": null,
+      "structureType": "Surface - Settlement - Industrial T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 c",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Surface - Settlement - Industrial T2 L",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "A 7 c a",
+      "slotNumber": 3,
+      "name": null,
+      "structureType": "Orbital - Starport - Dodecahedron",
+      "notes": null,
+      "active": false
+    },
+    {
+      "body": "B",
+      "slotNumber": 1,
+      "name": null,
+      "structureType": "Orbital - Outpost - Commercial",
+      "notes": null,
+      "active": false
+    }
+  ],
+  "largeShipCapacity": 1232,
+  "mediumShipCapacity": 400,
+  "fleetCarrierCapacity": 23000
+}

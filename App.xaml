@@ -1,0 +1,507 @@
+<Application x:Class="ColonyTracker.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:conv="clr-namespace:ColonyTracker.Converters"
+             xmlns:sys="clr-namespace:System.Windows.Controls;assembly=PresentationFramework"
+             StartupUri="MainWindow.xaml">
+    <!-- Same dark palette/control styles as FleetFinder, shared across both windows here since
+         this app has more than one (Window.Resources there is per-window; Application.Resources
+         here so MainWindow and SettingsWindow both pick it up for free). -->
+    <Application.Resources>
+        <conv:ZeroToVisibleConverter x:Key="ZeroToVisibleConverter"/>
+        <conv:OrbitalToIconConverter x:Key="OrbitalToIconConverter"/>
+        <sys:BooleanToVisibilityConverter x:Key="BoolToVisibleConverter"/>
+
+        <SolidColorBrush x:Key="Panel" Color="#120E08"/>
+        <SolidColorBrush x:Key="Accent" Color="#FF7500"/>
+        <SolidColorBrush x:Key="Muted" Color="#9C7A55"/>
+        <SolidColorBrush x:Key="Border" Color="#5A3A15"/>
+        <SolidColorBrush x:Key="Header" Color="#B89470"/>
+        <SolidColorBrush x:Key="WindowBackground" Color="#0A0705"/>
+        <SolidColorBrush x:Key="WindowForeground" Color="#EAE4DA"/>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="{StaticResource Panel}"/>
+            <Setter Property="RowBackground" Value="{StaticResource Panel}"/>
+            <Setter Property="AlternatingRowBackground" Value="#241809"/>
+            <Setter Property="Foreground" Value="{StaticResource WindowForeground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Border}"/>
+            <Setter Property="GridLinesVisibility" Value="Horizontal"/>
+            <Setter Property="HorizontalGridLinesBrush" Value="#3A2410"/>
+            <Setter Property="RowHeaderWidth" Value="0"/>
+            <Setter Property="HeadersVisibility" Value="Column"/>
+            <Setter Property="CanUserAddRows" Value="False"/>
+            <Setter Property="SelectionMode" Value="Single"/>
+            <Setter Property="EnableRowVirtualization" Value="True"/>
+        </Style>
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="#3A2410"/>
+            <Setter Property="Foreground" Value="{StaticResource Header}"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Border}"/>
+            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        </Style>
+        <Style TargetType="DataGridCell">
+            <Setter Property="Padding" Value="6,4"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Style.Triggers>
+                <!-- SelectionUnit defaults to FullRow, so every cell in the selected row gets
+                     IsSelected=True together - top/bottom borders on each line up edge-to-edge
+                     across the row, reading as one highlighted row like FleetFinder's accent
+                     styling elsewhere (selected tab, focused textbox), without the doubled/thicker
+                     vertical seam that all-four-sides borders would leave between adjacent cells. -->
+                <Trigger Property="IsSelected" Value="True">
+                    <Setter Property="Background" Value="#241809"/>
+                    <Setter Property="Foreground" Value="{StaticResource WindowForeground}"/>
+                    <Setter Property="BorderBrush" Value="{StaticResource Accent}"/>
+                    <Setter Property="BorderThickness" Value="0,1,0,1"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Explicit EditingElementStyle target for editable DataGridTextColumns (Notes, Carrier,
+             etc.) - the DataGrid's auto-generated editing TextBox wasn't reliably picking up the
+             implicit TextBox style below while actually mid-edit, leaving typed text unreadable
+             against the dark background. Pure white (not the theme's off-white EAE4DA) per explicit
+             request, for maximum contrast while typing. The DataGridCell's own IsSelected trigger
+             only shows a border spanning the whole selected row (SelectionUnit=FullRow), so nothing
+             previously marked which single cell was actually in edit mode versus just selected
+             alongside it - this border does that, in the same accent color as the row highlight. -->
+        <Style x:Key="EditingCellTextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="CaretBrush" Value="White"/>
+            <Setter Property="Background" Value="{StaticResource WindowBackground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Accent}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="3,1"/>
+        </Style>
+
+        <!-- Applied via ElementStyle on every DataGridTextColumn in both grids, so cell content is
+             centered both ways regardless of the DataGridCell alignment above (that centers the
+             ContentPresenter; this centers the text itself within a TextBlock that may stretch to
+             fill it). Background="Transparent" so the whole cell is mouse hit-testable, not just
+             wherever the centered text's glyphs render - a bare TextBlock only hit-tests its glyphs.
+             Double-click-to-edit itself is driven from DataGrid-level Preview handlers in
+             MainWindow.xaml.cs, not from here - a same-pattern MouseLeftButtonDown EventSetter on
+             this TextBlock never fired at all (confirmed via diagnostic logging 2026-07-31):
+             DataGridCell consumes the click during its own Preview-phase handling before it ever
+             reaches a bubbling handler on a child element. -->
+        <Style x:Key="CenterCellText" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
+        <!-- "Still needed" column: same centering, called out in the accent color while the overlay
+             is in Loading mode (buying still-needed commodities) - mirrors the overlay's own toggle
+             since both bind the same MainViewModel.ShowUnloadingOverlay. -->
+        <Style x:Key="StillNeededCellText" TargetType="TextBlock" BasedOn="{StaticResource CenterCellText}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding DataContext.ShowUnloadingOverlay, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="False">
+                    <Setter Property="Foreground" Value="{StaticResource Accent}"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <!-- "Delivered" column: same centering, called out in the accent color while the overlay is
+             in Unloading mode (hauling cargo to a build site) - the counterpart to StillNeededCellText. -->
+        <Style x:Key="DeliveredCellText" TargetType="TextBlock" BasedOn="{StaticResource CenterCellText}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding DataContext.ShowUnloadingOverlay, RelativeSource={RelativeSource AncestorType=DataGrid}}" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource Accent}"/>
+                    <Setter Property="FontWeight" Value="SemiBold"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#241809"/>
+        <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="#EAE4DA"/>
+        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="#241809"/>
+        <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightTextBrushKey}" Color="#EAE4DA"/>
+        <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}" Color="Transparent"/>
+        <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#120E08"/>
+        <SolidColorBrush x:Key="{x:Static SystemColors.WindowTextBrushKey}" Color="#EAE4DA"/>
+
+        <!-- Themed, rounded scrollbar: track is transparent, thumb rounds and lights up orange on hover. -->
+        <Style x:Key="RoundedScrollBarThumb" TargetType="Thumb">
+            <Setter Property="Background" Value="{StaticResource Border}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Thumb">
+                        <Border x:Name="thumbBorder" Background="{TemplateBinding Background}"
+                                CornerRadius="5" Margin="2"/>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="thumbBorder" Property="Background" Value="{StaticResource Accent}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="ScrollBar">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Width" Value="12"/>
+            <Setter Property="MinWidth" Value="12"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ScrollBar">
+                        <Grid Background="{TemplateBinding Background}">
+                            <Track Name="PART_Track" IsDirectionReversed="True">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.LineUpCommand" Opacity="0" Focusable="False"/>
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="ScrollBar.LineDownCommand" Opacity="0" Focusable="False"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb Style="{StaticResource RoundedScrollBarThumb}"/>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="Orientation" Value="Horizontal">
+                    <Setter Property="Height" Value="12"/>
+                    <Setter Property="MinHeight" Value="12"/>
+                    <Setter Property="Width" Value="Auto"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ScrollBar">
+                                <Grid Background="{TemplateBinding Background}">
+                                    <Track Name="PART_Track" IsDirectionReversed="False">
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton Command="ScrollBar.LineLeftCommand" Opacity="0" Focusable="False"/>
+                                        </Track.DecreaseRepeatButton>
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton Command="ScrollBar.LineRightCommand" Opacity="0" Focusable="False"/>
+                                        </Track.IncreaseRepeatButton>
+                                        <Track.Thumb>
+                                            <Thumb Style="{StaticResource RoundedScrollBarThumb}"/>
+                                        </Track.Thumb>
+                                    </Track>
+                                </Grid>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Themed horizontal slider: thin rounded track, round accent-filled thumb - same
+             track+thumb language as the scrollbar above. -->
+        <Style TargetType="Slider">
+            <Setter Property="Height" Value="20"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Slider">
+                        <Grid VerticalAlignment="Center">
+                            <Border Height="4" Background="{StaticResource Border}" CornerRadius="2"/>
+                            <Track x:Name="PART_Track">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton Command="Slider.DecreaseLarge" Opacity="0" Focusable="False"/>
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Command="Slider.IncreaseLarge" Opacity="0" Focusable="False"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb Width="14" Height="14" Cursor="Hand">
+                                        <Thumb.Template>
+                                            <ControlTemplate TargetType="Thumb">
+                                                <Ellipse Fill="{StaticResource Accent}"/>
+                                            </ControlTemplate>
+                                        </Thumb.Template>
+                                    </Thumb>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Custom checkbox: a small rounded box matching the app's panel/border palette, filled
+             with the accent color and a dark checkmark when ticked, replacing the native
+             Windows checkbox glyph. -->
+        <Style TargetType="CheckBox">
+            <Setter Property="Foreground" Value="{StaticResource WindowForeground}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <StackPanel Orientation="Horizontal">
+                            <Border x:Name="box" Width="16" Height="16" CornerRadius="3"
+                                    BorderBrush="{StaticResource Border}" BorderThickness="1.5" Background="{StaticResource Panel}"/>
+                            <ContentPresenter Margin="6,0,0,0" VerticalAlignment="Center"
+                                               RecognizesAccessKey="True"/>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="box" Property="Background" Value="{StaticResource Accent}"/>
+                                <Setter TargetName="box" Property="BorderBrush" Value="{StaticResource Accent}"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="box" Property="BorderBrush" Value="{StaticResource Accent}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Custom radio button: same palette/shape language as the checkbox above, but circular
+             with a solid accent dot when selected instead of a checkmark. -->
+        <Style TargetType="RadioButton">
+            <Setter Property="Foreground" Value="{StaticResource WindowForeground}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <StackPanel Orientation="Horizontal">
+                            <Border x:Name="box" Width="16" Height="16" CornerRadius="8"
+                                    BorderBrush="{StaticResource Border}" BorderThickness="1.5" Background="{StaticResource Panel}">
+                                <Ellipse x:Name="dot" Width="7" Height="7" Fill="{StaticResource Accent}" Visibility="Collapsed"/>
+                            </Border>
+                            <ContentPresenter Margin="6,0,0,0" VerticalAlignment="Center"
+                                               RecognizesAccessKey="True"/>
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="box" Property="BorderBrush" Value="{StaticResource Accent}"/>
+                                <Setter TargetName="dot" Property="Visibility" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="box" Property="BorderBrush" Value="{StaticResource Accent}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource Accent}"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Padding" Value="12,7"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#4A3316"/>
+                    <Setter Property="Foreground" Value="{StaticResource Muted}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Secondary (less prominent) button, e.g. "Remove" in a grid row - same shape, muted fill. -->
+        <Style x:Key="SecondaryButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+            <Setter Property="Background" Value="{StaticResource Border}"/>
+            <Setter Property="Foreground" Value="{StaticResource WindowForeground}"/>
+        </Style>
+
+        <!-- Custom title bar caption buttons (minimize/maximize/close). -->
+        <Style x:Key="CaptionButton" TargetType="Button">
+            <Setter Property="Width" Value="46"/>
+            <Setter Property="Height" Value="36"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="{StaticResource Muted}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Arrow"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#3A2410"/>
+                    <Setter Property="Foreground" Value="{StaticResource Accent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <!-- Close gets the conventional red hover instead of the accent color. -->
+        <Style x:Key="CloseCaptionButton" TargetType="Button" BasedOn="{StaticResource CaptionButton}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#E81123"/>
+                    <Setter Property="Foreground" Value="#FFFFFF"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- Dark-theme tabs. -->
+        <Style TargetType="TabControl">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+        <Style TargetType="TabItem">
+            <Setter Property="Foreground" Value="{StaticResource Header}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TabItem">
+                        <Border x:Name="bd" Background="Transparent" Padding="16,9" Margin="0,0,4,0"
+                                CornerRadius="6,6,0,0" BorderThickness="0">
+                            <ContentPresenter ContentSource="Header" HorizontalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="{StaticResource Panel}"/>
+                                <Setter TargetName="bd" Property="BorderBrush" Value="{StaticResource Accent}"/>
+                                <Setter TargetName="bd" Property="BorderThickness" Value="1,1,1,0"/>
+                                <Setter Property="Foreground" Value="#FF7500"/>
+                                <Setter Property="FontWeight" Value="SemiBold"/>
+                            </Trigger>
+                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=bd}" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#241809"/>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- No FleetFinder precedent for TextBox/ComboBox (it has none); styled to match the
+             same palette EDCF uses inline for its text inputs: dark fill, muted border, accent
+             on focus. -->
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="{StaticResource WindowBackground}"/>
+            <Setter Property="Foreground" Value="{StaticResource WindowForeground}"/>
+            <Setter Property="CaretBrush" Value="{StaticResource WindowForeground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="SelectionBrush" Value="{StaticResource Accent}"/>
+            <Style.Triggers>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" Value="{StaticResource Accent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="ComboBoxToggleButton" TargetType="ToggleButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Border x:Name="bd" Background="{StaticResource WindowBackground}" BorderBrush="{StaticResource Border}" BorderThickness="1">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="22"/>
+                                </Grid.ColumnDefinitions>
+                                <Path Grid.Column="1" Data="M0,0 L4,4 L8,0" Stretch="None"
+                                      HorizontalAlignment="Center" VerticalAlignment="Center"
+                                      Stroke="{StaticResource Muted}" StrokeThickness="1.4"/>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="BorderBrush" Value="{StaticResource Accent}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="Foreground" Value="{StaticResource WindowForeground}"/>
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Style="{StaticResource ComboBoxToggleButton}"
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                          Focusable="False" ClickMode="Press"/>
+                            <ContentPresenter x:Name="content" IsHitTestVisible="False"
+                                               Margin="{TemplateBinding Padding}" HorizontalAlignment="Left" VerticalAlignment="Center"
+                                               Content="{TemplateBinding SelectionBoxItem}"/>
+                            <Popup x:Name="Popup" IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   Placement="Bottom" AllowsTransparency="True" Focusable="False" PopupAnimation="None">
+                                <Border Background="{StaticResource Panel}" BorderBrush="{StaticResource Border}" BorderThickness="1"
+                                        MinWidth="{TemplateBinding ActualWidth}" MaxHeight="260">
+                                    <ScrollViewer SnapsToDevicePixels="True">
+                                        <ItemsPresenter/>
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="Foreground" Value="{StaticResource WindowForeground}"/>
+            <Setter Property="Padding" Value="8,5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBoxItem">
+                        <Border x:Name="bd" Background="Transparent" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#3A2410"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="{StaticResource Accent}"/>
+                                <Setter Property="Foreground" Value="#000000"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="{StaticResource Panel}"/>
+            <Setter Property="Foreground" Value="{StaticResource WindowForeground}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource Border}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+        </Style>
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Padding" Value="8,6"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="bd" Background="Transparent" Padding="{TemplateBinding Padding}">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#241809"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="bd" Property="Background" Value="#3A2410"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Application.Resources>
+</Application>

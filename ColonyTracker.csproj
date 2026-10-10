@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationTitle>ColonyTracker</ApplicationTitle>
+    <AssemblyName>ColonyTracker</AssemblyName>
+    <RootNamespace>ColonyTracker</RootNamespace>
+    <ApplicationIcon>Assets\ColonyTrackerIcon.ico</ApplicationIcon>
+    <Version>1.1.1</Version>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release'">
+    <!-- No .pdb in a published build. Symbols carry the build machine's source paths, local
+         variable names and line numbers, none of which a downloaded release needs. Debug builds
+         keep theirs. -->
+    <DebugType>none</DebugType>
+    <DebugSymbols>false</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Embedded so Window.Icon can reference it by relative pack URI, in addition to
+         ApplicationIcon above (for the exe file's own icon). -->
+    <Resource Include="Assets\ColonyTrackerIcon.ico"/>
+    <!-- Station type icons for the hauling grid / overlay - orbital vs surface settlement. -->
+    <Resource Include="Assets\Orbital.png"/>
+    <Resource Include="Assets\Planetary.png"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Read-only reference data shipped with the app; can be tweaked without a rebuild. -->
+    <None Update="Data\structure-catalog.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <!-- Structure -> valid named layout variants, imported from the community sheet's own
+         reference table (Structure/Layout Variant columns) so Station Type can be a constrained
+         dropdown instead of freeform text. -->
+    <None Update="Data\layout-variants.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <!-- Raven Colonial's site "buildType" codes -> (StructureType, StationType), derived from
+         SrvSurvey's own colonization-costs2.json reference data (RavenColonial is a spin-off of
+         SrvSurvey) so a Raven Colonial JSON export can be translated into this app's own model. -->
+    <None Update="Data\ravencolonial-buildtypes.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <!-- One-time seed for the first launch (imported from the user's existing spreadsheet); not touched afterwards. -->
+    <None Update="Data\seed-project.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <!-- Settings/projects/logs are written here at runtime; never shipped in the repo. -->
+    <None Update="Data\settings.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="Data\projects.json">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

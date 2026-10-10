@@ -1,0 +1,22 @@
+<UserControl x:Class="ColonyTracker.DialogTitleBar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             Height="32">
+    <Border Background="{StaticResource WindowBackground}">
+        <Grid>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="12,0,0,0">
+                <Image Source="Assets/ColonyTrackerIcon.ico" Width="14" Height="14"/>
+                <TextBlock Text="{Binding TitleText, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                           Margin="8,0,0,0" FontSize="12"
+                           Foreground="{StaticResource Muted}" VerticalAlignment="Center"/>
+            </StackPanel>
+            <Button Style="{StaticResource CloseCaptionButton}" Width="42" Height="32"
+                    HorizontalAlignment="Right" Click="CloseButton_Click" ToolTip="Close"
+                    WindowChrome.IsHitTestVisibleInChrome="True">
+                <Path Width="9" Height="9" Stretch="None" Data="M0,0 L9,9 M0,9 L9,0"
+                      Stroke="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}"
+                      StrokeThickness="1.1"/>
+            </Button>
+        </Grid>
+    </Border>
+</UserControl>
